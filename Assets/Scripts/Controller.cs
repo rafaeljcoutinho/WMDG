@@ -2,29 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstPersonCameraController : MonoBehaviour
+public class Controller : MonoBehaviour
 {
-    public float mouseSensitivity = 100.0f;
-    public Transform playerBody;
+    [SerializeField] private GameObject bullet;
 
-    private float xRotation = 0.0f;
-
-    void Start()
+    private void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        if()
     }
 
-    void Update()
-    {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90.0f, 90.0f);
-
-        transform.localRotation = Quaternion.Euler(xRotation, 0.0f, 0.0f);
-        playerBody.Rotate(Vector3.up * mouseX);
-    }
 }
 
 
