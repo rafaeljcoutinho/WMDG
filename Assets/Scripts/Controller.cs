@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    [SerializeField] private GameObject bullet;
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float fireRate = 0.25f;
 
-    private void Update()
+    private float nextFire; 
+
+    void Update()
     {
-        if()
+        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate; 
+            Shoot();
+        }
+    }
+
+    void Shoot()
+    {
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
 }

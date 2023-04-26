@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 8442248138368931228}
   - component: {fileID: 7360788069939929128}
   - component: {fileID: 3294012964234009929}
-  - component: {fileID: 8821361014795262175}
-  m_Layer: 0
-  m_Name: Cylinder
+  m_Layer: 7
+  m_Name: Gpx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3860800290995805561}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.07, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2155320115371210163}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!33 &7360788069939929128
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -84,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8821361014795262175
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3860800290995805561}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &7221025744639127451
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,8 +92,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2155320115371210163}
-  - component: {fileID: -8560082935959232546}
-  m_Layer: 0
+  - component: {fileID: 7252366505911878848}
+  m_Layer: 7
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +116,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8560082935959232546
+--- !u!114 &7252366505911878848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,3 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9fdf0adde54fd4688f553f2f3d5b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTarget: 1
+  horizontal: 1
+  vertical: 0
+  speed: 1
+  distance: 1
