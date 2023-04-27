@@ -702,6 +702,10 @@ PrefabInstance:
       propertyPath: timerTextUI
       value: 
       objectReference: {fileID: 79905600}
+    - target: {fileID: 7465419919267093434, guid: 2e634a1f17425004ca6ee0188ade1535, type: 3}
+      propertyPath: timerDuration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8341619387682673025, guid: 2e634a1f17425004ca6ee0188ade1535, type: 3}
       propertyPath: m_Name
       value: Tools

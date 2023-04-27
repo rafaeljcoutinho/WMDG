@@ -22,7 +22,6 @@ public class TimeManager : MonoBehaviour
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
-            Debug.Log("End game");
             SceneManager.LoadScene("FinishRound");
         }
         
