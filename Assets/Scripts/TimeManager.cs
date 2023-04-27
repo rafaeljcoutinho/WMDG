@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimeManager : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class TimeManager : MonoBehaviour
         if(timer <= 0)
         {
             Debug.Log("End game");
+            SceneManager.LoadScene("FinishRound");
         }
         
     }
