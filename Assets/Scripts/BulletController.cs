@@ -9,7 +9,6 @@ public class BulletController : MonoBehaviour
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private LayerMask environment;
 
-    private Collider[] colliders = new Collider[10];
     private RaycastHit[] hit = new RaycastHit[10];
 
     void Start()
@@ -33,14 +32,6 @@ public class BulletController : MonoBehaviour
         {
             hit[i].collider.GetComponentInParent<Target>().TakeDamage();
         }
-        if (Physics.OverlapSphereNonAlloc(transform.position, 0.01f, colliders, targetLayer) != 0)
-        {
-            Destroy(this);
-        }
-    }
-    private void OnDrawGizmos()
-    {
-        //Gizmos.DrawSphere(transform.position + Vector3.up * 0.1f, 0.01f);
     }
 
     private void MoveProjectile()

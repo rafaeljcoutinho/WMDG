@@ -9,11 +9,14 @@ public class Target : MonoBehaviour
     [SerializeField] private bool vertical;
     [SerializeField] private float speed;
     [SerializeField] private float distance;
+    [SerializeField] private int value;
     private int direction = 1;
+    private ScoreManager scoreManager;
     private float traveled;
 
-    private void Awake()
+    private void Start()
     {
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         traveled = 0;
     }
     private void Update()
@@ -49,7 +52,7 @@ public class Target : MonoBehaviour
 
     public void TakeDamage()
     {
-        Debug.Log("HIT");
+        scoreManager.AddScore(value);
         gameObject.SetActive(false);
     }
 
