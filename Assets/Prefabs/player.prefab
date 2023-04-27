@@ -190,9 +190,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6474091393124033551}
-  - component: {fileID: 6474091393124033548}
+  - component: {fileID: 1383051990}
   m_Layer: 0
-  m_Name: player
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,24 +216,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &6474091393124033548
-CharacterController:
+--- !u!114 &1383051990
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6474091393124033549}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18e755ce65aac942a1dd505dc560a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
 --- !u!1 &6474091393794389162
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6474091393794389157}
   - component: {fileID: 6474091393794389156}
+  - component: {fileID: 67711456}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -259,7 +255,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6474091393794389162}
   m_LocalRotation: {x: 0.08232944, y: -0, z: -0, w: 0.9966052}
-  m_LocalPosition: {x: 0.122, y: 0.496, z: 0.486}
+  m_LocalPosition: {x: 0.012, y: 0.496, z: 0.486}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -310,6 +306,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &67711456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6474091393794389162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b75f74442ee3943ab45723575bf64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 100
 --- !u!1 &8085683185269705191
 GameObject:
   m_ObjectHideFlags: 0
