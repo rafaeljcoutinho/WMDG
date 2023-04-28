@@ -13,7 +13,7 @@ public class FinalScore : MonoBehaviour
     private void Start()
     {
         score = ScoreManager.Instance.Score;
-        finalScoreTextUI.text = score.ToString();
+        finalScoreTextUI.text = "Score " + score.ToString();
     }
 
 
