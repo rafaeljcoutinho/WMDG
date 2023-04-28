@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
 
     private void StartGame()
     {
-        SceneManager.LoadScene("GameScene"); // Replace "GameScene" with the actual name of your game scene.
+        SceneManager.LoadScene("ModeSelector"); // Replace "ModeSelector" with the actual name of your game scene.
     }
 
     private void ViewScore()

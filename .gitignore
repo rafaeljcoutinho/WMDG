@@ -60,6 +60,7 @@ sysinfo.txt
 *.aab
 *.unitypackage
 *.app
+*.exe
 
 # Crashlytics generated file
 crashlytics-build.properties
@@ -70,3 +71,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+
+*.vscode
+*.dll
+MonoBleedingEdge
+WMDG-game1_Data
