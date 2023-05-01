@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
 
     private void StartGame()
     {
+        SceneManager.LoadScene("ModeSelector"); // Replace "ModeSelector" with the actual name of your game scene.
         initialMenu.SetActive(false);
         playerNameInput.gameObject.SetActive(true);
 
