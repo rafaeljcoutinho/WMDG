@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 133462588}
   - component: {fileID: 133462587}
   m_Layer: 5
-  m_Name: PlayAgainButton
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
 
     private void StartGame()
     {
-        SceneManager.LoadScene("ModeSelector"); // Replace "ModeSelector" with the actual name of your game scene.
+        
         initialMenu.SetActive(false);
         playerNameInput.gameObject.SetActive(true);
 
@@ -32,12 +32,12 @@ public class MainMenu : MonoBehaviour
     private void PlayGame()
     {
         PlayerData.Instance.SetPlayerName(playerNameInput.text);
-        SceneManager.LoadScene("GameScene"); // Replace "GameScene" with the actual name of your game scene.
+        SceneManager.LoadScene("ModeSelector");
     }
 
     private void ViewScore()
     {
-        SceneManager.LoadScene("ScoreScene"); // Replace "ScoreScene" with the actual name of your score scene.
+        SceneManager.LoadScene("ScoreScene"); 
     }
 
     private void ExitGame()
