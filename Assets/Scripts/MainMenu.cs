@@ -31,7 +31,6 @@ public class MainMenu : MonoBehaviour
     private void PlayGame()
     {
         PlayerData.Instance.SetPlayerName(playerNameInput.text);
-        Debug.Log(PlayerData.Instance.PlayerName);
         SceneManager.LoadScene("GameScene"); // Replace "GameScene" with the actual name of your game scene.
     }
 
