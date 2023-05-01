@@ -4,24 +4,15 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    public GameObject bulletPrefab;
-    public Transform firePoint;
-    public float fireRate = 0.25f;
-
-    private float nextFire; 
+    [SerializeField] private WeaponManager weaponManager;
+    [SerializeField] private Transform firePoint;
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        if (Input.GetButton("Fire1"))
         {
-            nextFire = Time.time + fireRate; 
-            Shoot();
+            weaponManager.Shoot(firePoint);
         }
-    }
-
-    void Shoot()
-    {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
 }

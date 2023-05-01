@@ -8,18 +8,15 @@ using UnityEngine.SceneManagement;
 public class FinalScore : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI finalScoreTextUI;
-
-    private int score;
     private void Start()
     {
-        score = ScoreManager.Instance.Score;
-        finalScoreTextUI.text = score.ToString();
+        finalScoreTextUI.text = PlayerData.Instance.PlayerName.ToString() +  " - " + PlayerData.Instance.PlayerScore.ToString();
     }
 
 
     public void MainMenu()
     {
-        ScoreManager.Instance.ResetScore();
+        PlayerData.Instance.ResetScore();
         SceneManager.LoadScene("Menu");
     }
 }
