@@ -1,0 +1,34 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Triggers",
+            "id": "44d54204-6e75-4f13-8fc5-ce70823c3740",
+            "actions": [
+                {
+                    "name": "AdaptativeTrigger",
+                    "type": "Button",
+                    "id": "5f5b27f5-6af0-4b65-9a0b-72e33ffc7393",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "55a7403c-9329-4b5f-9e50-968c22e00974",
+                    "path": "<DualSenseGamepadHID>/rightTriggerButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AdaptativeTrigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

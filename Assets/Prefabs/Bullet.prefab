@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1758515858889233249}
   - component: {fileID: -8010751156685029993}
+  - component: {fileID: 8556371875693399655}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8428a1de8789d1b479c07a38a0419bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50.44
+  speed: 150
   lifetime: 5
   targetLayer:
     serializedVersion: 2
@@ -53,6 +54,19 @@ MonoBehaviour:
   environment:
     serializedVersion: 2
     m_Bits: 64
+--- !u!135 &8556371875693399655
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4905609340120551317}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7412396321994594586
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,8 +95,8 @@ Transform:
   m_GameObject: {fileID: 7412396321994594586}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1758515858889233249}
   m_RootOrder: 0
