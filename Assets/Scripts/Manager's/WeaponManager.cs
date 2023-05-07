@@ -18,7 +18,7 @@ public class WeaponManager : MonoBehaviour
         {
             nextFire = Time.time + timeToShoot;
             weaponAnimator.SetTrigger("Fire");
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            Instantiate(bulletPrefab, firePoint.position + transform.forward, firePoint.rotation);
         }
         
     }

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    [SerializeField] SaveMethod saveMethod;
     private string playerName;
     private int playerScore;
     public static PlayerData Instance { get; private set; }
 
     public string PlayerName => playerName;
     public int PlayerScore => playerScore;
+
 
     private void Awake()
     {
@@ -33,4 +35,10 @@ public class PlayerData : MonoBehaviour
     {
         playerScore = 0;
     }
+
+    public void Save()
+    {
+        saveMethod.SaveScore(this);
+    }
+    
 }
