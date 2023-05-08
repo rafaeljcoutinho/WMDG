@@ -10,7 +10,8 @@ public class FinalScore : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finalScoreTextUI;
     private void Start()
     {
-        finalScoreTextUI.text = PlayerData.Instance.PlayerName.ToString() +  " - " + PlayerData.Instance.PlayerScore.ToString();
+        finalScoreTextUI.text = PlayerData.Instance.PlayerName.ToString() +  "  " + PlayerData.Instance.PlayerScore.ToString();
+        PlayerData.Instance.Save();
     }
 
 

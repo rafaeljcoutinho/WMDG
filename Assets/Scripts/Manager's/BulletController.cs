@@ -27,7 +27,7 @@ public class BulletController : MonoBehaviour
     private void DetectTarget()
     {
         
-        hit = Physics.SphereCastAll(transform.position, 0.01f, transform.forward, speed * Time.deltaTime ,targetLayer);
+        hit = Physics.SphereCastAll(transform.position, 0.1f, transform.forward, speed * Time.deltaTime ,targetLayer);
         for(int i = 0 ; i < hit.Length ; i++)
         {
             hit[i].collider.GetComponentInParent<Target>().TakeDamage();
