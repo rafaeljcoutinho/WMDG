@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreList : MonoBehaviour
 {
@@ -10,9 +11,12 @@ public class ScoreList : MonoBehaviour
     public GameObject scoreEntryPrefab;
     public Transform contentTransform;
 
+    [SerializeField] private Button backGameButton;
+
     void Start()
     {
         PopulateScoreList();
+        backGameButton.onClick.AddListener(BackToMenu);
     }
 
     public void PopulateScoreList()
@@ -43,5 +47,10 @@ public class ScoreList : MonoBehaviour
     public void ResetScrollPosition()
     {
         GetComponent<ScrollRect>().verticalNormalizedPosition = 1f;
+    }
+
+    private void BackToMenu()
+    {
+        SceneManager.LoadScene("Menu"); 
     }
 }
