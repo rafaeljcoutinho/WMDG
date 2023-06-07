@@ -12,14 +12,18 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button startGameButton;
     [SerializeField] private Button playGameButton;
     [SerializeField] private Button viewScoreButton;
+    [SerializeField] private Button ConfigButton;
     [SerializeField] private Button exitGameButton;
 
     private void Start()
     {
+
         startGameButton.onClick.AddListener(StartGame);
         viewScoreButton.onClick.AddListener(ViewScore);
         exitGameButton.onClick.AddListener(ExitGame);
         playGameButton.onClick.AddListener(PlayGame);
+        ConfigButton.onClick.AddListener(ConfigGame);
+
     }
 
     private void StartGame()
@@ -38,6 +42,11 @@ public class MainMenu : MonoBehaviour
     private void ViewScore()
     {
         SceneManager.LoadScene("ScoreScene"); 
+    }
+
+    private void ConfigGame()
+    {
+        SceneManager.LoadScene("ConfigScene");
     }
 
     private void ExitGame()
