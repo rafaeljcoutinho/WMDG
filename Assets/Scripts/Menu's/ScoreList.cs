@@ -4,49 +4,91 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class ScoreList : MonoBehaviour
 {
     public SaveMethod saveMethod;
-    public GameObject scoreEntryPrefab;
-    public Transform contentTransform;
 
-    [SerializeField] private Button backGameButton;
+    public GameObject panel;
+    public Button backGameButton;
+    public Button StaticScoreButton;
+    public Button DynamicScoreButton;
+    public Button LuckyScoreButton;
+    private string ActivatedButton;
+    private List<PlayerScore> scores;
+    private List<PlayerScore> selectedScores;
+
 
     void Start()
     {
-        PopulateScoreList();
-        backGameButton.onClick.AddListener(BackToMenu);
+        SelectStaticMode();
+        scores = saveMethod.LoadScores();
+        StaticScoreButton.onClick.AddListener(SelectStaticMode);
+        DynamicScoreButton.onClick.AddListener(SelectDynamicMode);
+        LuckyScoreButton.onClick.AddListener(SelectLuckyMode);
     }
-
-    public void PopulateScoreList()
+    private List<PlayerScore> FilterScores(List<PlayerScore> scores)
     {
-        List<Dictionary<string, int>> scores = saveMethod.LoadScores();
-        List<KeyValuePair<string, int>> playerScores = new List<KeyValuePair<string, int>>();
-
-        // Adiciona todos os pares chave-valor na lista playerScores
-        foreach (Dictionary<string, int> score in scores)
+        List<PlayerScore> filteredList = new List<PlayerScore>();
+        print(scores);
+        foreach (PlayerScore score in scores)
         {
-            foreach (KeyValuePair<string, int> entry in score)
+            if (score.gameMode == ActivatedButton)
             {
-                playerScores.Add(entry);
+                filteredList.Add(score);
             }
         }
-
-        // Ordena a lista de pares chave-valor pela pontuação, em ordem decrescente
-        playerScores = playerScores.OrderByDescending(x => x.Value).ToList();
-
-        // Adiciona as entradas ordenadas à lista
-        foreach (KeyValuePair<string, int> playerScoreData in playerScores)
-        {
-            GameObject newEntry = Instantiate(scoreEntryPrefab, contentTransform);
-            newEntry.GetComponent<ScoreEntryController>().SetScore(playerScoreData.Key, playerScoreData.Value);
-        }
-        ResetScrollPosition();
+        filteredList = (List<PlayerScore>)(from score in filteredList
+                       orderby score.score ascending
+                       select score);
+        print(filteredList);
+        return filteredList;
     }
-    public void ResetScrollPosition()
+
+    private void SelectStaticMode()
     {
-        GetComponent<ScrollRect>().verticalNormalizedPosition = 1f;
+        ActivatedButton = "Static";
+        SwitchActivesButtons();
+        selectedScores = FilterScores(scores);
+    }
+
+    private void SelectDynamicMode()
+    {
+        ActivatedButton = "Dynamic";
+        SwitchActivesButtons();
+        saveMethod.LoadScores();
+        selectedScores = FilterScores(scores);
+    }
+
+    private void SelectLuckyMode()
+    {
+        ActivatedButton = "Lucky";
+        SwitchActivesButtons();
+        saveMethod.LoadScores();
+        selectedScores = FilterScores(scores);
+    }
+
+    private void SwitchActivesButtons()
+    {
+        switch (ActivatedButton)
+        {
+            case "Static":
+                StaticScoreButton.image.color = new Color(0, 0, 0, 0.8f);
+                DynamicScoreButton.image.color = new Color(0, 0, 0, 0.5f);
+                LuckyScoreButton.image.color = new Color(0, 0, 0, 0.5f);
+                break;
+            case "Dynamic":
+                StaticScoreButton.image.color = new Color(0, 0, 0, 0.5f);
+                DynamicScoreButton.image.color = new Color(0, 0, 0, 0.8f);
+                LuckyScoreButton.image.color = new Color(0, 0, 0, 0.5f);
+                break;
+            case "Lucky":
+                StaticScoreButton.image.color = new Color(0, 0, 0, 0.5f);
+                DynamicScoreButton.image.color = new Color(0, 0, 0, 0.5f);
+                LuckyScoreButton.image.color = new Color(0, 0, 0, 0.8f);
+                break;
+        }
     }
 
     private void BackToMenu()
