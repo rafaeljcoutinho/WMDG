@@ -9,6 +9,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private float timeToShoot;
     [SerializeField] private Animator weaponAnimator;
     [SerializeField] private GameObject bulletPrefab;
+    public ParticleSystem muzzleFlash;
 
     private float nextFire;
 
@@ -18,6 +19,7 @@ public class WeaponManager : MonoBehaviour
         {
             nextFire = Time.time + timeToShoot;
             weaponAnimator.SetTrigger("Fire");
+            muzzleFlash.Play();
             Instantiate(bulletPrefab, firePoint.position + transform.forward, firePoint.rotation);
         }
         
