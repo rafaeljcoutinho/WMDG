@@ -13,6 +13,10 @@ public class Controller : MonoBehaviour
         {
             weaponManager.Shoot(firePoint);
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            weaponManager.Reload();
+        }
     }
 
 }
