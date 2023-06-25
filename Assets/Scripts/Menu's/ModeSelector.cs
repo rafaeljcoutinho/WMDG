@@ -20,17 +20,20 @@ public class ModeSelector : MonoBehaviour
     }
     private void StaticMode()
     {
+        PlayerData.Instance.SetGameMode("Static");
         SceneManager.LoadScene("GameScene"); // Replace "GameScene" with the actual name of your game scene.
     }
 
     private void DynamicMode()
     {
+        PlayerData.Instance.SetGameMode("Dynamic");
 
     }
 
     private void CardMode()
     {
-        
+        PlayerData.Instance.SetGameMode("Lucky");
+
     }
 
     private void GoBack()
