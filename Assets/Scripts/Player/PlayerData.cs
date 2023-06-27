@@ -7,10 +7,13 @@ public class PlayerData : MonoBehaviour
     [SerializeField] SaveMethod saveMethod;
     private string playerName;
     private int playerScore;
+    private string gameMode;
     public static PlayerData Instance { get; private set; }
 
     public string PlayerName => playerName;
     public int PlayerScore => playerScore;
+
+    public string GameMode => gameMode;
 
 
     private void Awake()
@@ -25,6 +28,15 @@ public class PlayerData : MonoBehaviour
     public void SetPlayerName(string name)
     {
         playerName = name;
+    }
+
+    public PlayerScore GetPlayerScore()
+    {
+        return new PlayerScore(PlayerName,PlayerScore,gameMode);
+    }
+    public void SetGameMode(string mode)
+    {
+        gameMode = mode;
     }
 
     public void AddPlayerScore(int value)

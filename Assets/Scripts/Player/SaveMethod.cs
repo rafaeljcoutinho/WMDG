@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Newtonsoft.Json;
+using System;
+
 public class SaveMethod : MonoBehaviour
 {
-    public List<Dictionary<string , int>> playerScores;
+    public List<PlayerScore> playerScores;
 
     private string GetScoreFilePath()
     {
@@ -16,12 +18,13 @@ public class SaveMethod : MonoBehaviour
     public void SaveScore(PlayerData playerData)
     {
         Debug.Log(GetScoreFilePath());
-        playerScores = new List<Dictionary<string, int>>();
+        playerScores = new List<PlayerScore>();
+        var score = new PlayerScore(playerData.PlayerName, playerData.PlayerScore,
+                                    playerData.GameMode, DateTime.Now);
+        print(score);
         playerScores = LoadScores();
-        var test = new Dictionary<string, int>();
-        test.Add(playerData.PlayerName, playerData.PlayerScore);
-        playerScores.Add(test);
-        string json = JsonConvert.SerializeObject(playerScores);
+        playerScores.Add(score);
+        string json = JsonConvert.SerializeObject(playerScores, Formatting.Indented);
         Debug.Log(json);
         using (StreamWriter streamWriter = new StreamWriter(GetScoreFilePath()))
         {
@@ -30,7 +33,7 @@ public class SaveMethod : MonoBehaviour
         }
     }
 
-    public List<Dictionary<string, int>> LoadScores()
+    public List<PlayerScore> LoadScores()
     {
         string filePath = GetScoreFilePath();
         if (File.Exists(filePath))
@@ -38,13 +41,13 @@ public class SaveMethod : MonoBehaviour
             using (StreamReader streamReader = new StreamReader(filePath))
             {
                 string json = streamReader.ReadToEnd();
-                return JsonConvert.DeserializeObject<List<Dictionary<string, int>>>(json);
+                return JsonConvert.DeserializeObject<List<PlayerScore>>(json);
             }
         }
         else
         {
             // Retorna uma lista vazia se o arquivo não existir
-            return new List<Dictionary<string, int>>();
+            return new List<PlayerScore>();
         }
     }
 }
