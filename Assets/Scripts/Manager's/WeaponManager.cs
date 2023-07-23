@@ -99,6 +99,7 @@ public class WeaponManager : MonoBehaviour
         {
             isReloading = true;
             //playReloadingAnimation
+            weaponAnimator.SetTrigger("Reload");
             ammoUI.text = "Reloading...";
             StartCoroutine(WaitToReload());
         }
