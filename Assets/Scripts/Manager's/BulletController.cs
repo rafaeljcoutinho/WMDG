@@ -18,10 +18,11 @@ public class BulletController : MonoBehaviour
 
     private void Update()
     {
-        MoveProjectile();
+        
     }
     private void FixedUpdate()
     {
+        MoveProjectile();
         DetectTarget();
     }
     private void DetectTarget()

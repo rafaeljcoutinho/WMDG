@@ -16,6 +16,11 @@ public class WeaponManager : MonoBehaviour
     [SerializeField, Range(1,5)] private float recoilResetTime;
     [SerializeField] private float limitRecoilMultiplayer;
     [SerializeField] private float recoilMultiplier = 1f;
+    [SerializeField] private AudioSource shotAudio; 
+    [SerializeField] private AudioSource reloadAudio1;
+    [SerializeField] private AudioSource reloadAudio2;
+    [SerializeField] private AudioSource reloadAudio3;
+
     private int currentAmmo;
     private float lastShotTime;
     private Vector2 currentRecoil;
@@ -46,10 +51,12 @@ public class WeaponManager : MonoBehaviour
     
     public void Shoot(Transform firePoint)
     {
-        if (Time.time > nextFire && currentAmmo > 0 && !isReloading)
+        if (Time.time > nextFire && currentAmmo > 0 && !isReloading )
         {
             nextFire = Time.time + timeToShoot;
+            TargetController.Instance.PlayerShoot();
             weaponAnimator.SetTrigger("Fire");
+            shotAudio.Play();
             muzzleFlash.Play();
             Instantiate(bulletPrefab, firePoint.position + transform.forward, firePoint.rotation);
             currentAmmo--;
@@ -106,7 +113,12 @@ public class WeaponManager : MonoBehaviour
 
     IEnumerator WaitToReload()
     {
-        yield return new WaitForSecondsRealtime(timeToReload);
+        reloadAudio1.Play();
+        yield return new WaitForSecondsRealtime(timeToReload/2);
+        reloadAudio2.Play();
+        yield return new WaitForSecondsRealtime(timeToReload/4);
+        reloadAudio3.Play();
+        yield return new WaitForSecondsRealtime(timeToReload/4);
         currentAmmo = ammoCapacity;
         UpdateUI();
         isReloading = false;
