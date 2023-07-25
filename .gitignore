@@ -77,3 +77,5 @@ crashlytics-build.properties
 *.dll
 MonoBleedingEdge
 WMDG-game1_Data
+
+/Bin/
