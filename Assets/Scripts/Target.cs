@@ -5,56 +5,59 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     [SerializeField] private bool moveTarget;
-    [SerializeField] private bool horizontal;
-    [SerializeField] private bool vertical;
     [SerializeField] private float speed;
-    [SerializeField] private float distance;
     [SerializeField] private int value;
-    private int direction = 1;
+
+    [SerializeField] private Vector3 initPosition;
+    [SerializeField] private Vector3 finalPosition;
+    private bool isMovingForward = true;
+    private float startTime;   
+    private float journeyLength; 
+    private Bounds bounds;
+    
     private ScoreManager scoreManager;
-    private float traveled;
 
     private void Start()
     {
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
-        traveled = 0;
     }
-    private void Update()
+   void Update()
     {
-        if (moveTarget)
-        {
-            Move();
-        }
-    }
+        transform.localScale = TargetController.Instance.CurrentScale;
+        value = TargetController.Instance.Value;
+        float journeyTime = Time.time - startTime;
+        float totalJourneyTime = journeyLength / speed; // Tempo total para completar a jornada de ida e volta
 
-    private void Move()
-    {
-        Vector3 displacement = Vector3.zero;
-        if (vertical)
-        {
-            displacement += Vector3.up;
-        }
-        if (horizontal)
-        {
-            displacement += Vector3.right;
-        }
-        displacement.Normalize();
-        var nextPosition = displacement * speed * Time.deltaTime;
-        traveled += nextPosition.magnitude;
-        if(traveled >= distance)
-        {
-            direction *= -1;
-            traveled = 0;
-        }
-        transform.position += nextPosition * direction;
+        float fracJourney = Mathf.PingPong(journeyTime / totalJourneyTime, 1.0f);
+        Vector3 newPosition = Vector3.Lerp(initPosition, finalPosition, fracJourney);
 
+        if (!isMovingForward)
+        {
+            newPosition = Vector3.Lerp(finalPosition, initPosition, fracJourney);
+        }
+
+        transform.position = newPosition;
     }
 
     public void TakeDamage()
     {
         scoreManager.AddScore(value);
-        gameObject.SetActive(false);
+        TargetController.Instance.RespawnTargetInBounds(bounds);
+        Destroy(gameObject);
     }
 
+    public void SetupTarget(Vector3 initialPosition, Vector3 finalPosition, Vector3 scale, bool isMove, float speed, Bounds bounds)
+    {
+        this.initPosition = initialPosition;
+        this.finalPosition = finalPosition;
+        transform.localScale = scale;
+        this.moveTarget = isMove;
+        this.speed = speed;
+        this.bounds = bounds;
+
+        startTime = Time.time;
+        journeyLength = Vector3.Distance(initPosition, finalPosition);
+
+    }
 
 }
