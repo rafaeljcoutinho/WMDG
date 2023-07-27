@@ -45,13 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53158b639b6c90040b16a6bc5c273c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoQuantity: 15
+  ammoUI: {fileID: 0}
   ammoCapacity: 15
   timeToShoot: 0.25
+  timeToReload: 0
   weaponAnimator: {fileID: 1732008529769580512}
-  weaponManager: {fileID: 0}
   bulletPrefab: {fileID: 4905609340120551317, guid: 5f4d5c9d4f808184e80a5468625efc6e, type: 3}
-  firePoint: {fileID: 5130568785908113464}
+  recoilY: 0
+  recoilX: 0
+  recoilResetTime: 0
+  limitRecoilMultiplayer: 0
+  recoilMultiplier: 1
+  muzzleFlash: {fileID: 0}
 --- !u!1001 &1008140302545950152
 PrefabInstance:
   m_ObjectHideFlags: 0
