@@ -5442,7 +5442,7 @@ PrefabInstance:
     - target: {fileID: 7042463947519757793, guid: 1101e27db8a130b4cba0d2fc90e24d07, type: 3}
       propertyPath: weaponAnimator
       value: 
-      objectReference: {fileID: 3990273324075455892}
+      objectReference: {fileID: 3725651899299289564}
     - target: {fileID: 7042463947519757793, guid: 1101e27db8a130b4cba0d2fc90e24d07, type: 3}
       propertyPath: recoilResetTime
       value: 1.2
@@ -5842,9 +5842,9 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &3990273324075455892 stripped
+--- !u!95 &3725651899299289564 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 2886829087170491374, guid: 1101e27db8a130b4cba0d2fc90e24d07, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3225829787072053158, guid: 1101e27db8a130b4cba0d2fc90e24d07, type: 3}
   m_PrefabInstance: {fileID: 2265415822525851258}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6359978297504384578 stripped
