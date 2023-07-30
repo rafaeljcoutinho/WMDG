@@ -8,6 +8,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ammoUI;
     [SerializeField] private int ammoCapacity;
     [SerializeField] private float timeToShoot;
+    [SerializeField] private float timeToCocked;
     [SerializeField] private float timeToReload;
     [SerializeField] private Animator weaponAnimator;
     [SerializeField] private GameObject bulletPrefab;
@@ -20,6 +21,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private AudioSource reloadAudio1;
     [SerializeField] private AudioSource reloadAudio2;
     [SerializeField] private AudioSource reloadAudio3;
+    [SerializeField] private AudioSource cockedAudio;
 
     private int currentAmmo;
     private float lastShotTime;
@@ -29,6 +31,8 @@ public class WeaponManager : MonoBehaviour
 
     public ParticleSystem muzzleFlash;
     public Vector2 CurrentRecoil => currentRecoil;
+    public int CurrentAmmo => currentAmmo;
+    public int AmmoCapaicty => ammoCapacity;
     
 
     void Awake()
@@ -51,20 +55,27 @@ public class WeaponManager : MonoBehaviour
     
     public void Shoot(Transform firePoint)
     {
-        if (Time.time > nextFire && currentAmmo > 0 && !isReloading )
-        {
-            nextFire = Time.time + timeToShoot;
-            TargetController.Instance.PlayerShoot();
-            weaponAnimator.SetTrigger("Fire");
-            shotAudio.Play();
-            muzzleFlash.Play();
-            Instantiate(bulletPrefab, firePoint.position + transform.forward, firePoint.rotation);
-            currentAmmo--;
-            lastShotTime = Time.time; 
-            recoilMultiplier += 0.1f;  
-            StartCoroutine(ApplyRecoil());
-            UpdateUI();
+        if(Time.time > nextFire){
+           
+            if (currentAmmo > 0 && !isReloading )
+            { 
+                nextFire = Time.time + timeToShoot;
+                TargetController.Instance.PlayerShoot();
+                weaponAnimator.SetTrigger("Fire");
+                shotAudio.Play();
+                muzzleFlash.Play();
+                Instantiate(bulletPrefab, firePoint.position + transform.forward, firePoint.rotation);
+                currentAmmo--;
+                lastShotTime = Time.time; 
+                recoilMultiplier += 0.1f;  
+                StartCoroutine(ApplyRecoil());
+                UpdateUI();
+            }else if(currentAmmo == 0 && !isReloading){
+                cockedAudio.Play();
+                nextFire = Time.time + timeToCocked;
+            }
         }
+       
     }
 
 
