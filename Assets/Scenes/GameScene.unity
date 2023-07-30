@@ -6501,6 +6501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameConfig
       objectReference: {fileID: 0}
+    - target: {fileID: 1868323632641806451, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+      propertyPath: target2xPointsPrefab
+      value: 
+      objectReference: {fileID: 4905679803840562978, guid: 5318e8913022ea444865a633eb84b9ee, type: 3}
     - target: {fileID: 2611628032986729121, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
       propertyPath: scoreTextUI
       value: 

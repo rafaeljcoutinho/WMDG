@@ -2,21 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetClock : Target
+public class Target2xPoints : Target
 {
-    private TimeManager timeManager;
+    private TargetController targetController;
     private bool isAutoDestroy;
-
     private void Start() {
-        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        targetController = GameObject.Find("SpawnTargets").GetComponent<TargetController>();
         isAutoDestroy = false;
         StartCoroutine(AutoDestroy());
     }
 
 
     private void OnDestroy() {
-        if(isAutoDestroy == false)
-            timeManager.AddTime(15);
+        if(targetController != null && isAutoDestroy == false)
+            targetController.SetDoublePoints(10);
     }
 
     IEnumerator AutoDestroy(){

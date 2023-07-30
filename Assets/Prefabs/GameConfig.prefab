@@ -512,6 +512,7 @@ MonoBehaviour:
   timeManager: {fileID: 9113000506249997288}
   targetNormalPrefab: {fileID: 1538829289640873977, guid: 22d35699d645bfa48886df9f558d40ac, type: 3}
   targetClockPrefab: {fileID: 1999366670260823022, guid: ad5023a035e0dae49a09801ad04a21bd, type: 3}
+  target2xPointsPrefab: {fileID: 4905679803840562978, guid: 5318e8913022ea444865a633eb84b9ee, type: 3}
   SpawnAreas:
   - {fileID: 1868323632824364311}
   - {fileID: 1868323632579916718}
