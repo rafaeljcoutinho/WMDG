@@ -8,6 +8,7 @@ public class TargetController : MonoBehaviour
     [SerializeField] private TimeManager timeManager;
     [SerializeField] private TargetNormal targetNormalPrefab;
     [SerializeField] private TargetClock targetClockPrefab;
+    [SerializeField] private Target2xPoints target2xPointsPrefab;
     [SerializeField] private List<BoxCollider> SpawnAreas;
     [SerializeField] private float minTimerToSpawn;
     [SerializeField] private float maxTimerToSpawn;
@@ -18,10 +19,11 @@ public class TargetController : MonoBehaviour
     private int playerShoots;
     private int playerKills;
     private float speed;
-    private int value;
+    private float value;
+    private float valueMultiplier;
     private Vector3 targetSize;
 
-    public int Value => value;
+    public float Value => value * valueMultiplier;
     public Vector3 CurrentScale => currentScale;
 
     void Awake(){
@@ -33,6 +35,7 @@ public class TargetController : MonoBehaviour
         playerKills = 6;
         playerShoots = 10;
         value = 10;
+        valueMultiplier = 1;
         if(Instance == null){
             Instance = this;
         }else
@@ -83,12 +86,15 @@ public class TargetController : MonoBehaviour
             Random.Range(minBounds.z, maxBounds.z)
         );
         float selectTarget = Random.Range(1f,100f);
-        if(selectTarget <= 10f){
+        if(selectTarget <= 5f){
             selectTarget = Random.Range(1f,100f);
 
-            if(selectTarget <= 100f){
+            if(selectTarget <= 50f){
                 TargetClock newTargetClock = Instantiate(targetClockPrefab);
-                newTargetClock.SetupTarget(randomInitPosition, randomFinalPosition, targetSize, true, speed, bounds, timeManager);
+                newTargetClock.SetupTarget(randomInitPosition, randomFinalPosition, targetSize, true, speed, bounds);
+            }else if(selectTarget >=50f){
+                Target2xPoints newTarget2xPoints = Instantiate(target2xPointsPrefab);
+                newTarget2xPoints.SetupTarget(randomInitPosition, randomFinalPosition, targetSize, true, speed, bounds);
             }
         }else{
             TargetNormal newTarget = Instantiate(targetNormalPrefab);
@@ -98,6 +104,7 @@ public class TargetController : MonoBehaviour
 
 
     }
+
 
 
 
@@ -149,5 +156,15 @@ public class TargetController : MonoBehaviour
         targetSize = new Vector3(scale, scale, scale);
     }
 
+    public void SetDoublePoints(float t){
+        StartCoroutine(SetDoublePointsCoroutine(t));
+    }
+
+    private IEnumerator SetDoublePointsCoroutine(float t){
+        valueMultiplier = valueMultiplier * 2;
+        yield return new WaitForSecondsRealtime(t);
+        valueMultiplier = valueMultiplier * 1/2;
+        yield return null;
+    }
 
 }

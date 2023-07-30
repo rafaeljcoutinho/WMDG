@@ -5,12 +5,11 @@ using UnityEngine;
 public class TargetNormal : Target
 {
     private ScoreManager scoreManager;
-    private int value;
+    private float value;
 
     private void Awake()
     {
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
-        
     }
 
     protected override void Update()
@@ -21,7 +20,7 @@ public class TargetNormal : Target
 
 
     private void OnDestroy() {
-        scoreManager.AddScore(value);
+        scoreManager.AddScore((int)value);
     }
 
 }
