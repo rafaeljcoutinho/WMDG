@@ -27,6 +27,10 @@ public class TimeManager : MonoBehaviour
         
     }
 
+    public void AddTime(int t){
+        timer += t;
+    }
+
 
 
 }

@@ -5,11 +5,14 @@ using UnityEngine;
 public class TargetController : MonoBehaviour
 {
     public static TargetController Instance;
-    [SerializeField] private Target targetPrefab;
+    [SerializeField] private TimeManager timeManager;
+    [SerializeField] private TargetNormal targetNormalPrefab;
+    [SerializeField] private TargetClock targetClockPrefab;
     [SerializeField] private List<BoxCollider> SpawnAreas;
     [SerializeField] private float minTimerToSpawn;
     [SerializeField] private float maxTimerToSpawn;
     [SerializeField] private float scaleChangeSpeed;
+
 
     private Vector3 currentScale; 
     private int playerShoots;
@@ -29,6 +32,7 @@ public class TargetController : MonoBehaviour
         speed = 1;
         playerKills = 6;
         playerShoots = 10;
+        value = 10;
         if(Instance == null){
             Instance = this;
         }else
@@ -48,7 +52,7 @@ public class TargetController : MonoBehaviour
                 Random.Range(minBounds.y, maxBounds.y),
                 Random.Range(minBounds.z, maxBounds.z)
             );
-            Target newTarget = Instantiate(targetPrefab);
+            Target newTarget = Instantiate(targetNormalPrefab);
             newTarget.SetupTarget(randomInitPosition, randomFinalPosition, targetSize, true, speed, b.bounds);
         }
     }
@@ -78,10 +82,25 @@ public class TargetController : MonoBehaviour
             Random.Range(minBounds.y, maxBounds.y),
             Random.Range(minBounds.z, maxBounds.z)
         );
-        Target newTarget = Instantiate(targetPrefab);
+        float selectTarget = Random.Range(1f,100f);
+        if(selectTarget <= 10f){
+            selectTarget = Random.Range(1f,100f);
 
-        newTarget.SetupTarget(randomInitPosition, randomFinalPosition, targetSize, true, speed, bounds);
+            if(selectTarget <= 100f){
+                TargetClock newTargetClock = Instantiate(targetClockPrefab);
+                newTargetClock.SetupTarget(randomInitPosition, randomFinalPosition, targetSize, true, speed, bounds, timeManager);
+            }
+        }else{
+            TargetNormal newTarget = Instantiate(targetNormalPrefab);
+            newTarget.SetupTarget(randomInitPosition, randomFinalPosition, targetSize, true, speed, bounds);
+        }
+            
+
+
     }
+
+
+
     private void Update() {
         if(playerShoots%10 == 0)
             CalculateDificulty();
