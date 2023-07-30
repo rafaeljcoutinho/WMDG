@@ -3469,7 +3469,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!1 &1141920306
 GameObject:
   m_ObjectHideFlags: 0
@@ -5756,7 +5756,8 @@ MonoBehaviour:
   resolutionDropdown: {fileID: 307487797}
   graphicsDropdown: {fileID: 1594075862}
   screenModeDropdown: {fileID: 886567146}
-  audioMixer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 572f3dad67747a74ca9686496de3cf99, type: 2}
+  volumeSlider: {fileID: 1040708451}
 --- !u!1 &2141949550
 GameObject:
   m_ObjectHideFlags: 0

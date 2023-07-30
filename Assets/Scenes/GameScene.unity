@@ -239,6 +239,10 @@ PrefabInstance:
       propertyPath: mouseSensitivity
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 213208783227266128, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 572f3dad67747a74ca9686496de3cf99, type: 2}
     - target: {fileID: 1423713835070382219, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.4978136
@@ -259,6 +263,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 2534806852871848362, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 572f3dad67747a74ca9686496de3cf99, type: 2}
+    - target: {fileID: 3863881154844224114, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 572f3dad67747a74ca9686496de3cf99, type: 2}
     - target: {fileID: 4380904277211186991, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
       propertyPath: aimPoint
       value: 
@@ -275,6 +287,14 @@ PrefabInstance:
       propertyPath: weaponManager
       value: 
       objectReference: {fileID: 478032100}
+    - target: {fileID: 4886807670226978222, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 572f3dad67747a74ca9686496de3cf99, type: 2}
+    - target: {fileID: 5041439479335889994, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 572f3dad67747a74ca9686496de3cf99, type: 2}
     - target: {fileID: 6474091393124033549, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
       propertyPath: m_Name
       value: Ak Player
@@ -363,7 +383,7 @@ AudioSource:
   m_GameObject: {fileID: 478032098}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 572f3dad67747a74ca9686496de3cf99, type: 2}
   m_audioClip: {fileID: 8300000, guid: e7632c6401c09437e83de45d33c5858e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -6229,6 +6249,7 @@ MonoBehaviour:
   minTimerToSpawn: 0
   maxTimerToSpawn: 0
   scaleChangeSpeed: 2
+  levelTextUI: {fileID: 5332622681670982882}
 --- !u!4 &1202429168
 Transform:
   m_ObjectHideFlags: 0
@@ -7602,6 +7623,10 @@ PrefabInstance:
       propertyPath: m_CullTransparentMesh
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5332622681616670626, guid: 5223a75c131fdbd429dfc5d340a7fa0f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.3983154
+      objectReference: {fileID: 0}
     - target: {fileID: 9066927795307973412, guid: 5223a75c131fdbd429dfc5d340a7fa0f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -26.070007
@@ -7613,6 +7638,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5332622681366300253, guid: 5223a75c131fdbd429dfc5d340a7fa0f, type: 3}
   m_PrefabInstance: {fileID: 5332622681670982880}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5332622681670982882 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3881739655763384845, guid: 5223a75c131fdbd429dfc5d340a7fa0f, type: 3}
+  m_PrefabInstance: {fileID: 5332622681670982880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &5334037120204250633
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TargetController : MonoBehaviour
@@ -10,6 +11,7 @@ public class TargetController : MonoBehaviour
     [SerializeField] private float minTimerToSpawn;
     [SerializeField] private float maxTimerToSpawn;
     [SerializeField] private float scaleChangeSpeed;
+    [SerializeField] private TextMeshProUGUI levelTextUI;
 
     private Vector3 currentScale; 
     private int playerShoots;
@@ -103,26 +105,31 @@ public class TargetController : MonoBehaviour
         float playerStats = (float)playerKills / (float)playerShoots;
         float scale = targetSize.x;
         if(playerStats > 0.85f){
+            levelTextUI.text = "Sniper";
             speed = 5f;
             scale = 0.5f;
             value = 25;
         }
         else if(playerStats > 0.7f){
+            levelTextUI.text = "Gunslinger";
             speed = 3f;
             scale = 0.75f;
             value = 15;
         }
         else if(playerStats >= 0.6f){
+            levelTextUI.text = "Median";
             speed = 1;
             scale = 1f;
             value = 10;
         }
         else if(playerStats > 0.4f){
+            levelTextUI.text = "Maybe";
             speed = 0.7f;
             scale = 1.25f;
             value = 5;
         }
         else{
+            levelTextUI.text = "Give up now";
             speed = 0.3f;
             scale = 1.5f;
             value = 1;
