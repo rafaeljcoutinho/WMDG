@@ -19,7 +19,8 @@ public class TargetClock : Target
             TargetController.Instance.SetAddTime(5f, timeManager);
         else 
             TargetController.Instance.AdjustPlayerKills();
-    }    IEnumerator AutoDestroy(){
+    }  
+    IEnumerator AutoDestroy(){
         yield return new WaitForSecondsRealtime(3f);
         isAutoDestroy = true;
         base.TakeDamage();

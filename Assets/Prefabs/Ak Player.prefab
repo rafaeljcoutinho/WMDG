@@ -84,7 +84,7 @@ ParticleSystem:
   looping: 0
   prewarm: 0
   playOnAwake: 1
-  useUnscaledTime: 0
+  useUnscaledTime: 1
   autoRandomSeed: 1
   startDelay:
     serializedVersion: 2
@@ -5359,6 +5359,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 078c86d24364a29418b36cf58ce8d1b7, type: 2}
+    - target: {fileID: 3225829787072053158, guid: 1101e27db8a130b4cba0d2fc90e24d07, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5130568785908113464, guid: 1101e27db8a130b4cba0d2fc90e24d07, type: 3}
       propertyPath: m_RootOrder
       value: 0
