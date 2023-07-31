@@ -16,12 +16,10 @@ public class TargetClock : Target
 
     private void OnDestroy() {
         if(!isAutoDestroy)
-            timeManager.AddTime(15);
+            TargetController.Instance.SetAddTime(5f, timeManager);
         else 
             TargetController.Instance.AdjustPlayerKills();
-    }
-
-    IEnumerator AutoDestroy(){
+    }    IEnumerator AutoDestroy(){
         yield return new WaitForSecondsRealtime(3f);
         isAutoDestroy = true;
         base.TakeDamage();

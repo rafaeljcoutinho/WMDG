@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TargetController : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class TargetController : MonoBehaviour
     [SerializeField] private float minTimerToSpawn;
     [SerializeField] private float maxTimerToSpawn;
     [SerializeField] private float scaleChangeSpeed;
+    [SerializeField] private TextMeshProUGUI levelTextUI;
+    [SerializeField] private TextMeshProUGUI x2TextUI;
+    [SerializeField] public TextMeshProUGUI TimeTextUI;
 
     private float specialTargetChance;
     private WeaponManager weaponManager;
@@ -186,26 +190,31 @@ public class TargetController : MonoBehaviour
         float playerStats = (float)playerKills / (float)playerShoots;
         float scale = targetSize.x;
         if(playerStats > 0.85f){
+            levelTextUI.text = "Very Hard";
             speed = 5f;
             scale = 0.5f;
             value = 25;
         }
         else if(playerStats > 0.7f){
+            levelTextUI.text = "Hard";
             speed = 3f;
             scale = 0.75f;
             value = 15;
         }
         else if(playerStats >= 0.6f){
+            levelTextUI.text = "Normal";
             speed = 1;
             scale = 1f;
             value = 10;
         }
         else if(playerStats > 0.4f){
+            levelTextUI.text = "Easy";
             speed = 0.7f;
             scale = 1.25f;
             value = 5;
         }
         else{
+            levelTextUI.text = "Very Easy";
             speed = 0.3f;
             scale = 1.5f;
             value = 1;
@@ -218,8 +227,10 @@ public class TargetController : MonoBehaviour
     }
 
     private IEnumerator SetDoublePointsCoroutine(float t){
+        x2TextUI.gameObject.SetActive(true);
         valueMultiplier = valueMultiplier * 2;
         yield return new WaitForSecondsRealtime(t);
+        x2TextUI.gameObject.SetActive(false);
         valueMultiplier = valueMultiplier * 1/2;
         yield return null;
     }
@@ -252,6 +263,19 @@ public class TargetController : MonoBehaviour
         if(specialTargetChance > 25f){
             specialTargetChance = 25f;
         }
+    }
+
+    IEnumerator SetAddTimeCoroutine(float t, TimeManager timeManager){
+        TargetController.Instance.TimeTextUI.gameObject.SetActive(true);
+        TargetController.Instance.TimeTextUI.text = "+15s";
+        yield return new WaitForSecondsRealtime(t);
+        TargetController.Instance.TimeTextUI.gameObject.SetActive(false);
+        timeManager.AddTime(15);
+        yield return null;
+    }
+
+    public void SetAddTime(float t, TimeManager timeManager){
+        StartCoroutine(SetAddTimeCoroutine(t, timeManager));
     }
 
 }
