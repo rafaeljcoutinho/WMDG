@@ -275,9 +275,9 @@ public class TargetController : MonoBehaviour
     IEnumerator SetAddTimeCoroutine(float t, TimeManager timeManager){
         TargetController.Instance.TimeTextUI.gameObject.SetActive(true);
         TargetController.Instance.TimeTextUI.text = "+15s";
+        timeManager.AddTime(15);
         yield return new WaitForSecondsRealtime(t);
         TargetController.Instance.TimeTextUI.gameObject.SetActive(false);
-        timeManager.AddTime(15);
         yield return null;
     }
 

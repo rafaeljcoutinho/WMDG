@@ -16,7 +16,7 @@ public class TargetClock : Target
 
     private void OnDestroy() {
         if(!isAutoDestroy)
-            TargetController.Instance.SetAddTime(5f, timeManager);
+            TargetController.Instance.SetAddTime(3f, timeManager);
         else 
             TargetController.Instance.AdjustPlayerKills();
     }  
