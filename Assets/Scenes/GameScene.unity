@@ -239,6 +239,14 @@ PrefabInstance:
       propertyPath: mouseSensitivity
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 213208783227266128, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: BypassEffects
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 213208783227266128, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1423713835070382219, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.4978136
@@ -259,6 +267,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 2534806852871848362, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: BypassEffects
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3725651899299289564, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863881154844224114, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: BypassEffects
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4380904277211186991, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
       propertyPath: aimPoint
       value: 
@@ -275,6 +295,14 @@ PrefabInstance:
       propertyPath: weaponManager
       value: 
       objectReference: {fileID: 478032100}
+    - target: {fileID: 4886807670226978222, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: BypassEffects
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5041439479335889994, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: BypassEffects
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6474091393124033549, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
       propertyPath: m_Name
       value: Ak Player
@@ -327,6 +355,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8095953599835037732, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095953599835037732, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9136541498359868315, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
       propertyPath: ammoUI
       value: 
@@ -378,7 +414,7 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
+  BypassEffects: 1
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
@@ -461,6 +497,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53158b639b6c90040b16a6bc5c273c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &478032101 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3725651899299289564, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
+  m_PrefabInstance: {fileID: 478032097}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &706700902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6502,9 +6543,9 @@ PrefabInstance:
       value: GameConfig
       objectReference: {fileID: 0}
     - target: {fileID: 1868323632641806451, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
-      propertyPath: target2xPointsPrefab
+      propertyPath: animator
       value: 
-      objectReference: {fileID: 4905679803840562978, guid: 5318e8913022ea444865a633eb84b9ee, type: 3}
+      objectReference: {fileID: 478032101}
     - target: {fileID: 2611628032986729121, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
       propertyPath: scoreTextUI
       value: 

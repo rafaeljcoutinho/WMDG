@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetClock : Target
+public class Target8Ammo : Target
 {
-    private TimeManager timeManager;
     private bool isAutoDestroy;
 
     private void Start() {
-        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         isAutoDestroy = false;
         StartCoroutine(AutoDestroy());
     }
@@ -16,7 +14,7 @@ public class TargetClock : Target
 
     private void OnDestroy() {
         if(!isAutoDestroy)
-            timeManager.AddTime(15);
+            TargetController.Instance.SetUnlimitedAmmo();
         else 
             TargetController.Instance.AdjustPlayerKills();
     }
@@ -26,6 +24,4 @@ public class TargetClock : Target
         isAutoDestroy = true;
         base.TakeDamage();
     }
-
-
 }

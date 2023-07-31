@@ -509,10 +509,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a0a5d5f95356a43967c5c70b22baa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeManager: {fileID: 9113000506249997288}
   targetNormalPrefab: {fileID: 1538829289640873977, guid: 22d35699d645bfa48886df9f558d40ac, type: 3}
   targetClockPrefab: {fileID: 1999366670260823022, guid: ad5023a035e0dae49a09801ad04a21bd, type: 3}
   target2xPointsPrefab: {fileID: 4905679803840562978, guid: 5318e8913022ea444865a633eb84b9ee, type: 3}
+  targetTurttlePrefab: {fileID: 3809444363559889149, guid: 52c24ab08bc1e2440bf11965a81f9b21, type: 3}
+  targetBombItPrefab: {fileID: -8789450392970254510, guid: 435d32f7fb36e25458427f37573f840a, type: 3}
+  target8AmmoPrefab: {fileID: 5732827974446615439, guid: 9815531de4e59494392ae0266b540095, type: 3}
+  targetLuckyPrefab: {fileID: 3852178013086965222, guid: d593c816cea92e94fa298b9675024e6d, type: 3}
   SpawnAreas:
   - {fileID: 1868323632824364311}
   - {fileID: 1868323632579916718}
