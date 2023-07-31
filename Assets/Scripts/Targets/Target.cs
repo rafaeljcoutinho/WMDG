@@ -39,6 +39,7 @@ public class Target : MonoBehaviour
     public virtual void TakeDamage()
     {
         TargetController.Instance.RespawnTargetInBounds(bounds);
+        TargetController.Instance.RemoveItem(gameObject);
         Destroy(gameObject);
     }
 

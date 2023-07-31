@@ -14,7 +14,7 @@ public class ScoreManager : MonoBehaviour
     }
 
 
-    public void AddScore(int value)
+    public void AddScore(float value)
     {
         PlayerData.Instance.AddPlayerScore(value);
         scoreTextUI.text = PlayerData.Instance.PlayerScore.ToString();
