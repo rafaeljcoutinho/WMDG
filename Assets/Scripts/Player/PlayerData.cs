@@ -27,9 +27,9 @@ public class PlayerData : MonoBehaviour
         playerName = name;
     }
 
-    public void AddPlayerScore(int value)
+    public void AddPlayerScore(float value)
     {
-        playerScore += value;
+        playerScore += (int)value;
     }
     public void ResetScore()
     {

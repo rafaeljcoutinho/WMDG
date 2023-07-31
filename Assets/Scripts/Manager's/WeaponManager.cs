@@ -22,7 +22,8 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private AudioSource reloadAudio2;
     [SerializeField] private AudioSource reloadAudio3;
     [SerializeField] private AudioSource cockedAudio;
-
+    
+    private bool isUnlimitedAmmo;
     private int currentAmmo;
     private float lastShotTime;
     private Vector2 currentRecoil;
@@ -37,6 +38,7 @@ public class WeaponManager : MonoBehaviour
 
     void Awake()
     {
+        isUnlimitedAmmo = false;
         currentAmmo = ammoCapacity;
         UpdateUI();
     }
@@ -55,24 +57,27 @@ public class WeaponManager : MonoBehaviour
     
     public void Shoot(Transform firePoint)
     {
-        if(Time.time > nextFire){
+        if(Time.unscaledTime > nextFire){
            
             if (currentAmmo > 0 && !isReloading )
             { 
-                nextFire = Time.time + timeToShoot;
+                nextFire = Time.unscaledTime + timeToShoot;
                 TargetController.Instance.PlayerShoot();
                 weaponAnimator.SetTrigger("Fire");
                 shotAudio.Play();
                 muzzleFlash.Play();
                 Instantiate(bulletPrefab, firePoint.position + transform.forward, firePoint.rotation);
-                currentAmmo--;
-                lastShotTime = Time.time; 
+                if(!isUnlimitedAmmo){
+                    currentAmmo--;
+                    UpdateUI();
+                }
+                lastShotTime = Time.unscaledTime; 
                 recoilMultiplier += 0.1f;  
                 StartCoroutine(ApplyRecoil());
-                UpdateUI();
+                
             }else if(currentAmmo == 0 && !isReloading){
                 cockedAudio.Play();
-                nextFire = Time.time + timeToCocked;
+                nextFire = Time.unscaledTime + timeToCocked;
             }
         }
        
@@ -89,7 +94,7 @@ public class WeaponManager : MonoBehaviour
         while (elapsedTime < recoilOverTime)
         {
             currentRecoil = Vector2.Lerp(Vector2.zero, recoilAmount, elapsedTime / recoilOverTime);
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime ;
 
             yield return null;
         }
@@ -100,7 +105,7 @@ public class WeaponManager : MonoBehaviour
         while (elapsedTime < recoveryTime)
         {
             currentRecoil = Vector2.Lerp(recoilAmount, Vector2.zero, elapsedTime / recoveryTime);
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
 
             yield return null;
         }
@@ -108,7 +113,18 @@ public class WeaponManager : MonoBehaviour
         currentRecoil = Vector2.zero;
     }
 
+    public void UnilimtedAmmoTime(float t){
+        StartCoroutine(UnlimitedAmmo(t));
+    }
 
+    private IEnumerator UnlimitedAmmo(float t){
+        isUnlimitedAmmo = true;
+        currentAmmo = ammoCapacity;
+        ammoUI.text = "**/**";
+        yield return new WaitForSecondsRealtime(t);
+        isUnlimitedAmmo = false;
+
+    }
 
 
     public void Reload()

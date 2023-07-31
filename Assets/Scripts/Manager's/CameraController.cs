@@ -23,8 +23,8 @@ public class CameraController : MonoBehaviour
 
     private void MoveCamera()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.unscaledDeltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.unscaledDeltaTime;
 
         mouseX += weaponManager.CurrentRecoil.y;
         mouseY -= weaponManager.CurrentRecoil.x;
