@@ -136,6 +136,7 @@ public class WeaponManager : MonoBehaviour
             weaponAnimator.SetTrigger("Reload");
             ammoUI.text = "Reloading...";
             StartCoroutine(WaitToReload());
+            ammoUI.fontSize = 20;
         }
     }
 
@@ -150,6 +151,7 @@ public class WeaponManager : MonoBehaviour
         currentAmmo = ammoCapacity;
         UpdateUI();
         isReloading = false;
+        ammoUI.fontSize = 30;
         yield return null;
     }
 
