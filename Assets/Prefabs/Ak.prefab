@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoUI: {fileID: 0}
   ammoCapacity: 15
-  timeToShoot: 0.25
+  timeToShoot: 0.1
   timeToCocked: 0
   timeToReload: 0
   weaponAnimator: {fileID: 0}

@@ -373,7 +373,7 @@ PrefabInstance:
       objectReference: {fileID: 478032099}
     - target: {fileID: 9136541498359868315, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
       propertyPath: timeToShoot
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 9136541498359868315, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
       propertyPath: timeToCocked

@@ -37,7 +37,7 @@ public class TargetController : MonoBehaviour
 
 
     void Awake(){
-        specialTargetChance = 10f;
+        specialTargetChance = 25f;
         weaponManager = GameObject.Find("Ak").GetComponent<WeaponManager>();
         scaleChangeSpeed = 4.0f;
         targetSize = new Vector3(1,1,1);
@@ -170,6 +170,15 @@ public class TargetController : MonoBehaviour
         //Debug.Log("hits: " + playerKills);
         //Debug.Log("shots: " + playerShoots);
 
+
+        if(valueMultiplier >= 2f){
+            x2TextUI.text = "x " + valueMultiplier;
+            x2TextUI.gameObject.SetActive(true);
+        }else{
+            x2TextUI.gameObject.SetActive(false);
+        }
+
+
         if(playerShoots%10 == 0)
             CalculateDificulty();
 
@@ -227,10 +236,8 @@ public class TargetController : MonoBehaviour
     }
 
     private IEnumerator SetDoublePointsCoroutine(float t){
-        x2TextUI.gameObject.SetActive(true);
         valueMultiplier = valueMultiplier * 2;
         yield return new WaitForSecondsRealtime(t);
-        x2TextUI.gameObject.SetActive(false);
         valueMultiplier = valueMultiplier * 1/2;
         yield return null;
     }
@@ -268,9 +275,9 @@ public class TargetController : MonoBehaviour
     IEnumerator SetAddTimeCoroutine(float t, TimeManager timeManager){
         TargetController.Instance.TimeTextUI.gameObject.SetActive(true);
         TargetController.Instance.TimeTextUI.text = "+15s";
+        timeManager.AddTime(15);
         yield return new WaitForSecondsRealtime(t);
         TargetController.Instance.TimeTextUI.gameObject.SetActive(false);
-        timeManager.AddTime(15);
         yield return null;
     }
 
