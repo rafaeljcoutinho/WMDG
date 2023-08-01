@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
@@ -20,6 +21,10 @@ public class TargetController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelTextUI;
     [SerializeField] private TextMeshProUGUI x2TextUI;
     [SerializeField] public TextMeshProUGUI TimeTextUI;
+    [SerializeField] public Image TurtleImageUI;
+    [SerializeField] public Image LuckyTextUI;
+
+    [SerializeField] private TextMeshProUGUI LuckyChance;
 
     private float specialTargetChance;
     private WeaponManager weaponManager;
@@ -29,11 +34,14 @@ public class TargetController : MonoBehaviour
     private float speed;
     private float value;
     private float valueMultiplier;
+
+    private int bonusTime;
     private Vector3 targetSize;
     private List<GameObject> targetList = new List<GameObject>();
 
     public float Value => value * valueMultiplier;
     public Vector3 CurrentScale => currentScale;
+
 
 
     void Awake(){
@@ -229,9 +237,12 @@ public class TargetController : MonoBehaviour
     private IEnumerator SetDoublePointsCoroutine(float t){
         x2TextUI.gameObject.SetActive(true);
         valueMultiplier = valueMultiplier * 2;
+        x2TextUI.text = "x"+valueMultiplier;
         yield return new WaitForSecondsRealtime(t);
-        x2TextUI.gameObject.SetActive(false);
         valueMultiplier = valueMultiplier * 1/2;
+        if(valueMultiplier == 1)
+            x2TextUI.gameObject.SetActive(false);
+        x2TextUI.text = "x"+valueMultiplier;
         yield return null;
     }
 
@@ -240,9 +251,11 @@ public class TargetController : MonoBehaviour
     }
 
     IEnumerator SetTimeScaleCoroutine(float t){
+        TurtleImageUI.gameObject.SetActive(true);
         Time.timeScale = Time.timeScale / 2;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
         yield return new WaitForSecondsRealtime(t);
+        TurtleImageUI.gameObject.SetActive(false);
         Time.timeScale = Time.timeScale * 2;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
@@ -263,14 +276,24 @@ public class TargetController : MonoBehaviour
         if(specialTargetChance > 25f){
             specialTargetChance = 25f;
         }
+        LuckyChance.text = ((int)specialTargetChance) + "%";
+        StartCoroutine(SetLuckyChanceCoroutine(5f));
+    }
+
+    IEnumerator SetLuckyChanceCoroutine(float t){
+        LuckyTextUI.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(t);
+        LuckyTextUI.gameObject.SetActive(false);
     }
 
     IEnumerator SetAddTimeCoroutine(float t, TimeManager timeManager){
         TargetController.Instance.TimeTextUI.gameObject.SetActive(true);
-        TargetController.Instance.TimeTextUI.text = "+15s";
+        bonusTime += 15;
+        TargetController.Instance.TimeTextUI.text = "+"+ bonusTime +"s";
+        timeManager.AddTime(15);
         yield return new WaitForSecondsRealtime(t);
         TargetController.Instance.TimeTextUI.gameObject.SetActive(false);
-        timeManager.AddTime(15);
+        bonusTime = 0;
         yield return null;
     }
 

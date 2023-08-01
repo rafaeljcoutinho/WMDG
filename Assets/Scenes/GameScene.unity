@@ -228,6 +228,17 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &371040953 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4718283994573124213, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+  m_PrefabInstance: {fileID: 1868323631663058076}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &478032097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6659,6 +6670,10 @@ PrefabInstance:
       propertyPath: levelTextUI
       value: 
       objectReference: {fileID: 1985308838}
+    - target: {fileID: 1868323632641806451, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+      propertyPath: TurttleImageUI
+      value: 
+      objectReference: {fileID: 371040953}
     - target: {fileID: 2611628032986729121, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
       propertyPath: scoreTextUI
       value: 
@@ -6710,6 +6725,22 @@ PrefabInstance:
     - target: {fileID: 4098207935783405117, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 7.3983154
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718283994573124213, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718283994573124213, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865988693001530268, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 38.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865988693001530268, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -81.5
       objectReference: {fileID: 0}
     - target: {fileID: 5230272815370485199, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
       propertyPath: m_IsActive
