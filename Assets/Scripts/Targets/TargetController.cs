@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
@@ -20,6 +21,10 @@ public class TargetController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelTextUI;
     [SerializeField] private TextMeshProUGUI x2TextUI;
     [SerializeField] public TextMeshProUGUI TimeTextUI;
+    [SerializeField] public Image TurtleImageUI;
+    [SerializeField] public Image LuckyTextUI;
+
+    [SerializeField] private TextMeshProUGUI LuckyChance;
 
     private float specialTargetChance;
     private WeaponManager weaponManager;
@@ -29,6 +34,8 @@ public class TargetController : MonoBehaviour
     private float speed;
     private float value;
     private float valueMultiplier;
+
+    private int bonusTime;
     private Vector3 targetSize;
     private List<GameObject> targetList = new List<GameObject>();
 
@@ -36,8 +43,9 @@ public class TargetController : MonoBehaviour
     public Vector3 CurrentScale => currentScale;
 
 
+
     void Awake(){
-        specialTargetChance = 25f;
+        specialTargetChance = 15f;
         weaponManager = GameObject.Find("Ak").GetComponent<WeaponManager>();
         scaleChangeSpeed = 4.0f;
         targetSize = new Vector3(1,1,1);
@@ -237,8 +245,12 @@ public class TargetController : MonoBehaviour
 
     private IEnumerator SetDoublePointsCoroutine(float t){
         valueMultiplier = valueMultiplier * 2;
+        x2TextUI.text = "x"+valueMultiplier;
         yield return new WaitForSecondsRealtime(t);
         valueMultiplier = valueMultiplier * 1/2;
+        if(valueMultiplier == 1)
+            x2TextUI.gameObject.SetActive(false);
+        x2TextUI.text = "x"+valueMultiplier;
         yield return null;
     }
 
@@ -247,11 +259,14 @@ public class TargetController : MonoBehaviour
     }
 
     IEnumerator SetTimeScaleCoroutine(float t){
+        TurtleImageUI.gameObject.SetActive(true);
         Time.timeScale = Time.timeScale / 2;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
         yield return new WaitForSecondsRealtime(t);
         Time.timeScale = Time.timeScale * 2;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        if(Time.timeScale >= 1)
+            TurtleImageUI.gameObject.SetActive(false);
     }
 
     public void BombIt(){
@@ -266,18 +281,28 @@ public class TargetController : MonoBehaviour
     }
 
     public void SetLuckyChance(){
-        specialTargetChance = specialTargetChance + 5f;
-        if(specialTargetChance > 25f){
-            specialTargetChance = 25f;
+        specialTargetChance = specialTargetChance + 3f;
+        if(specialTargetChance > 30f){
+            specialTargetChance = 30f;
         }
+        LuckyChance.text = ((int)specialTargetChance) + "%";
+        StartCoroutine(SetLuckyChanceCoroutine(5f));
+    }
+
+    IEnumerator SetLuckyChanceCoroutine(float t){
+        LuckyTextUI.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(t);
+        LuckyTextUI.gameObject.SetActive(false);
     }
 
     IEnumerator SetAddTimeCoroutine(float t, TimeManager timeManager){
         TargetController.Instance.TimeTextUI.gameObject.SetActive(true);
-        TargetController.Instance.TimeTextUI.text = "+15s";
+        bonusTime += 15;
+        TargetController.Instance.TimeTextUI.text = "+"+ bonusTime +"s";
         timeManager.AddTime(15);
         yield return new WaitForSecondsRealtime(t);
         TargetController.Instance.TimeTextUI.gameObject.SetActive(false);
+        bonusTime = 0;
         yield return null;
     }
 

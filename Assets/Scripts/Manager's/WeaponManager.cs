@@ -68,6 +68,7 @@ public class WeaponManager : MonoBehaviour
                 muzzleFlash.Play();
                 Instantiate(bulletPrefab, firePoint.position + transform.forward, firePoint.rotation);
                 if(!isUnlimitedAmmo){
+                    ammoUI.fontSize = 20;
                     currentAmmo--;
                     UpdateUI();
                 }
@@ -120,7 +121,8 @@ public class WeaponManager : MonoBehaviour
     private IEnumerator UnlimitedAmmo(float t){
         isUnlimitedAmmo = true;
         currentAmmo = ammoCapacity;
-        ammoUI.text = "**/**";
+        ammoUI.text = "∞";
+        ammoUI.fontSize = 40;
         yield return new WaitForSecondsRealtime(t);
         isUnlimitedAmmo = false;
 
