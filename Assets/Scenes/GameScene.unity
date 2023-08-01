@@ -384,7 +384,7 @@ PrefabInstance:
       objectReference: {fileID: 478032099}
     - target: {fileID: 9136541498359868315, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
       propertyPath: timeToShoot
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 9136541498359868315, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
       propertyPath: timeToCocked
@@ -513,6 +513,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3725651899299289564, guid: 7803a02d20c65b84194508e01d64ca03, type: 3}
   m_PrefabInstance: {fileID: 478032097}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &633987596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3538802002685570100, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+  m_PrefabInstance: {fileID: 1868323631663058076}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &706700902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6242,6 +6253,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1985308841 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6708997527032266152, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+  m_PrefabInstance: {fileID: 1868323631663058076}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &281855665377644750
 GameObject:
   m_ObjectHideFlags: 0
@@ -6667,9 +6689,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1868323631663058077}
     - target: {fileID: 1868323632641806451, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+      propertyPath: LuckyChance
+      value: 
+      objectReference: {fileID: 633987596}
+    - target: {fileID: 1868323632641806451, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+      propertyPath: LuckyTextUI
+      value: 
+      objectReference: {fileID: 1985308841}
+    - target: {fileID: 1868323632641806451, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
       propertyPath: levelTextUI
       value: 
       objectReference: {fileID: 1985308838}
+    - target: {fileID: 1868323632641806451, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+      propertyPath: TurtleImageUI
+      value: 
+      objectReference: {fileID: 371040953}
     - target: {fileID: 1868323632641806451, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
       propertyPath: TurttleImageUI
       value: 
@@ -6743,6 +6777,10 @@ PrefabInstance:
       value: -81.5
       objectReference: {fileID: 0}
     - target: {fileID: 5230272815370485199, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329803975145073018, guid: 60ec09aae22c07d43b79c62d6ac34fa0, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

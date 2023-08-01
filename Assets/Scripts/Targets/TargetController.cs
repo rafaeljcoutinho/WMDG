@@ -178,6 +178,15 @@ public class TargetController : MonoBehaviour
         //Debug.Log("hits: " + playerKills);
         //Debug.Log("shots: " + playerShoots);
 
+
+        if(valueMultiplier >= 2f){
+            x2TextUI.text = "x " + valueMultiplier;
+            x2TextUI.gameObject.SetActive(true);
+        }else{
+            x2TextUI.gameObject.SetActive(false);
+        }
+
+
         if(playerShoots%10 == 0)
             CalculateDificulty();
 
@@ -235,7 +244,6 @@ public class TargetController : MonoBehaviour
     }
 
     private IEnumerator SetDoublePointsCoroutine(float t){
-        x2TextUI.gameObject.SetActive(true);
         valueMultiplier = valueMultiplier * 2;
         x2TextUI.text = "x"+valueMultiplier;
         yield return new WaitForSecondsRealtime(t);
@@ -255,9 +263,10 @@ public class TargetController : MonoBehaviour
         Time.timeScale = Time.timeScale / 2;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
         yield return new WaitForSecondsRealtime(t);
-        TurtleImageUI.gameObject.SetActive(false);
         Time.timeScale = Time.timeScale * 2;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        if(Time.timeScale >= 1)
+            TurtleImageUI.gameObject.SetActive(false);
     }
 
     public void BombIt(){
