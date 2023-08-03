@@ -47,7 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoUI: {fileID: 0}
   ammoCapacity: 15
-  timeToShoot: 0.25
+  timeToShoot: 0.1
+  timeToCocked: 0
   timeToReload: 0
   weaponAnimator: {fileID: 0}
   bulletPrefab: {fileID: 4905609340120551317, guid: 5f4d5c9d4f808184e80a5468625efc6e, type: 3}
@@ -60,6 +61,7 @@ MonoBehaviour:
   reloadAudio1: {fileID: 0}
   reloadAudio2: {fileID: 0}
   reloadAudio3: {fileID: 0}
+  cockedAudio: {fileID: 0}
   muzzleFlash: {fileID: 0}
 --- !u!1001 &4967553759997131469
 PrefabInstance:

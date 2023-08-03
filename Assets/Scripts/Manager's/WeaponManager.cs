@@ -8,6 +8,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ammoUI;
     [SerializeField] private int ammoCapacity;
     [SerializeField] private float timeToShoot;
+    [SerializeField] private float timeToCocked;
     [SerializeField] private float timeToReload;
     [SerializeField] private Animator weaponAnimator;
     [SerializeField] private GameObject bulletPrefab;
@@ -20,7 +21,9 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private AudioSource reloadAudio1;
     [SerializeField] private AudioSource reloadAudio2;
     [SerializeField] private AudioSource reloadAudio3;
-
+    [SerializeField] private AudioSource cockedAudio;
+    
+    private bool isUnlimitedAmmo;
     private int currentAmmo;
     private float lastShotTime;
     private Vector2 currentRecoil;
@@ -29,10 +32,13 @@ public class WeaponManager : MonoBehaviour
 
     public ParticleSystem muzzleFlash;
     public Vector2 CurrentRecoil => currentRecoil;
+    public int CurrentAmmo => currentAmmo;
+    public int AmmoCapaicty => ammoCapacity;
     
 
     void Awake()
     {
+        isUnlimitedAmmo = false;
         currentAmmo = ammoCapacity;
         UpdateUI();
     }
@@ -51,20 +57,31 @@ public class WeaponManager : MonoBehaviour
     
     public void Shoot(Transform firePoint)
     {
-        if (Time.time > nextFire && currentAmmo > 0 && !isReloading )
-        {
-            nextFire = Time.time + timeToShoot;
-            TargetController.Instance.PlayerShoot();
-            weaponAnimator.SetTrigger("Fire");
-            shotAudio.Play();
-            muzzleFlash.Play();
-            Instantiate(bulletPrefab, firePoint.position + transform.forward, firePoint.rotation);
-            currentAmmo--;
-            lastShotTime = Time.time; 
-            recoilMultiplier += 0.1f;  
-            StartCoroutine(ApplyRecoil());
-            UpdateUI();
+        if(Time.unscaledTime > nextFire){
+           
+            if (currentAmmo > 0 && !isReloading )
+            { 
+                nextFire = Time.unscaledTime + timeToShoot;
+                TargetController.Instance.PlayerShoot();
+                weaponAnimator.SetTrigger("Fire");
+                shotAudio.Play();
+                muzzleFlash.Play();
+                Instantiate(bulletPrefab, firePoint.position + transform.forward, firePoint.rotation);
+                if(!isUnlimitedAmmo){
+                    ammoUI.fontSize = 20;
+                    currentAmmo--;
+                    UpdateUI();
+                }
+                lastShotTime = Time.unscaledTime; 
+                recoilMultiplier += 0.1f;  
+                StartCoroutine(ApplyRecoil());
+                
+            }else if(currentAmmo == 0 && !isReloading){
+                cockedAudio.Play();
+                nextFire = Time.unscaledTime + timeToCocked;
+            }
         }
+       
     }
 
 
@@ -78,7 +95,7 @@ public class WeaponManager : MonoBehaviour
         while (elapsedTime < recoilOverTime)
         {
             currentRecoil = Vector2.Lerp(Vector2.zero, recoilAmount, elapsedTime / recoilOverTime);
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime ;
 
             yield return null;
         }
@@ -89,7 +106,7 @@ public class WeaponManager : MonoBehaviour
         while (elapsedTime < recoveryTime)
         {
             currentRecoil = Vector2.Lerp(recoilAmount, Vector2.zero, elapsedTime / recoveryTime);
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
 
             yield return null;
         }
@@ -97,7 +114,19 @@ public class WeaponManager : MonoBehaviour
         currentRecoil = Vector2.zero;
     }
 
+    public void UnilimtedAmmoTime(float t){
+        StartCoroutine(UnlimitedAmmo(t));
+    }
 
+    private IEnumerator UnlimitedAmmo(float t){
+        isUnlimitedAmmo = true;
+        currentAmmo = ammoCapacity;
+        ammoUI.text = "∞";
+        ammoUI.fontSize = 40;
+        yield return new WaitForSecondsRealtime(t);
+        isUnlimitedAmmo = false;
+
+    }
 
 
     public void Reload()
@@ -109,6 +138,7 @@ public class WeaponManager : MonoBehaviour
             weaponAnimator.SetTrigger("Reload");
             ammoUI.text = "Reloading...";
             StartCoroutine(WaitToReload());
+            ammoUI.fontSize = 20;
         }
     }
 
@@ -123,6 +153,7 @@ public class WeaponManager : MonoBehaviour
         currentAmmo = ammoCapacity;
         UpdateUI();
         isReloading = false;
+        ammoUI.fontSize = 30;
         yield return null;
     }
 
