@@ -46,7 +46,11 @@ public class TargetController : MonoBehaviour
 
     void Awake(){
         specialTargetChance = 15f;
-        weaponManager = GameObject.Find("Ak").GetComponent<WeaponManager>();
+        if (GameObject.Find("Ak")) {
+            weaponManager = GameObject.Find("Ak").GetComponent<WeaponManager>();
+        } else if (GameObject.Find("Deagle")) {
+            weaponManager = GameObject.Find("Deagle").GetComponent<WeaponManager>();
+        }
         scaleChangeSpeed = 4.0f;
         targetSize = new Vector3(1,1,1);
         minTimerToSpawn = 0f;

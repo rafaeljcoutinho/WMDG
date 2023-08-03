@@ -72,6 +72,11 @@ public class WeaponManager : MonoBehaviour
                     currentAmmo--;
                     UpdateUI();
                 }
+                if(currentAmmo == 0) {
+                    weaponAnimator.SetBool("OutAmmo", true);
+                } else {
+                    weaponAnimator.SetBool("OutAmmo", false);
+                }
                 lastShotTime = Time.unscaledTime; 
                 recoilMultiplier += 0.1f;  
                 StartCoroutine(ApplyRecoil());
@@ -138,6 +143,7 @@ public class WeaponManager : MonoBehaviour
             weaponAnimator.SetTrigger("Reload");
             ammoUI.text = "Reloading...";
             StartCoroutine(WaitToReload());
+            weaponAnimator.SetBool("OutAmmo", false);
             ammoUI.fontSize = 20;
         }
     }

@@ -1,0 +1,33 @@
+
+                                                                            MANUAL
+
+Hello, this is the free gun pack for unity you downloaded.This pack contains 4 items 
+- 1X Disert Egal 50AE,
+- 1X GLOCK G22,
+- 1X S&W 357,
+- 1X S&W 500.
+with this 4 items you also get 48 materials:
+Each Gun use 3 Materials to render it self
+- MainBody,
+- Mag&ReloderOrChamber,
+- Parts.
+
+NOTE:- Don't delete the original folder from the 3D Models;
+
+Each Gun have 4 textuersets that means - if you the disert egal as an example you will 
+find that the Default skin/texture of the disert egal is renderd by the combination of three 
+materials (MainBody,Mag&ReloderOrChamber,Parts) And the gun have 3 skins left so one skin use 
+3 materials 4 skins will use 12 materials and 4 guns also use 48 materials.
+- 1X Disert Egal (4X skin)  12 Materials,
+- 1X Glock G22 (4X skin) 12 Materials,
+- 1X S&W 357 (4X skin) 12 Materials,
+- 1X S&W 500 (4X skin) 12 Materials.
+
+In The GameObject Called "Material Center" The Material Changer script is attached which 
+helps to change Skins/Textures at "Play Mode". I create a custom list to hold the materials
+, In the script you find the texturesindex for every gun.In the texture index 1 is stand for
+the Default skin/texture of the selected gun.And 2,3,4 is the other skins/textures of the guns.
+
+NOTE:- This Product Does not require any license or credit it is totally open source.
+And You can also name the skins by yourself.
+ 
