@@ -17,22 +17,20 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-
         startGameButton.onClick.AddListener(StartGame);
         viewScoreButton.onClick.AddListener(ViewScore);
         exitGameButton.onClick.AddListener(ExitGame);
         playGameButton.onClick.AddListener(PlayGame);
         ConfigButton.onClick.AddListener(ConfigGame);
-
     }
 
     private void StartGame()
     {
-        
         initialMenu.SetActive(false);
         playerNameInput.gameObject.SetActive(true);
-
+        playerNameInput.Select();
     }
+
     private void PlayGame()
     {
         PlayerData.Instance.SetPlayerName(playerNameInput.text);
@@ -52,5 +50,21 @@ public class MainMenu : MonoBehaviour
     private void ExitGame()
     {
         Application.Quit();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            playerNameInput.gameObject.SetActive(false);
+            initialMenu.SetActive(true);
+        }
+        else if (playerNameInput.isActiveAndEnabled)
+        {
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Tab))
+            {
+                playGameButton.Select();
+            }
+        }
     }
 }

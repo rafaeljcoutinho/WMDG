@@ -37,4 +37,12 @@ public class ModeSelector : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GoBack();
+        }
+    }
 }
