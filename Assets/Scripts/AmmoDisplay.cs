@@ -14,6 +14,12 @@ public class AmmoDisplay : MonoBehaviour
 
     private void Start()
     {
+        if (GameObject.Find("Ak")) {
+            weaponManager = GameObject.Find("Ak").GetComponent<WeaponManager>();
+        } else if (GameObject.Find("Deagle")) {
+            weaponManager = GameObject.Find("Deagle").GetComponent<WeaponManager>();
+        }
+
         maxBullets = weaponManager.AmmoCapaicty;
         // Inicializa o array de bolinhas
         bullets = new RectTransform[maxBullets];

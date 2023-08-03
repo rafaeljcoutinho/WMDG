@@ -58,10 +58,10 @@ MonoBehaviour:
   timeToReload: 1.5
   weaponAnimator: {fileID: 2942752272861024750}
   bulletPrefab: {fileID: 4905609340120551317, guid: 5f4d5c9d4f808184e80a5468625efc6e, type: 3}
-  recoilY: 0
-  recoilX: 0
-  recoilResetTime: 0
-  limitRecoilMultiplayer: 1
+  recoilY: 0.15
+  recoilX: 0.2
+  recoilResetTime: 1.2
+  limitRecoilMultiplayer: 2
   recoilMultiplier: 1
   shotAudio: {fileID: 7036158747967921755}
   reloadAudio1: {fileID: 5810465198575088444}
@@ -5583,7 +5583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9053537744334831486, guid: 734bfb03004393446a240485c56b0b7a, type: 3}
       propertyPath: m_Name
-      value: Deagle
+      value: Deagle Gun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 734bfb03004393446a240485c56b0b7a, type: 3}
@@ -5609,7 +5609,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2132419a1b518774687dec49e0a09101, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
