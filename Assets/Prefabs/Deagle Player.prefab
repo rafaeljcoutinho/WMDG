@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18e755ce65aac942a1dd505dc560a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponManager: {fileID: 0}
+  weaponManager: {fileID: 3407960009999723498}
   firePoint: {fileID: 6474091393794389157}
 --- !u!1 &6474091393794389162
 GameObject:
