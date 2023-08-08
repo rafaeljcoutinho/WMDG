@@ -23,6 +23,8 @@ public class TargetController : MonoBehaviour
     [SerializeField] public TextMeshProUGUI TimeTextUI;
     [SerializeField] public Image TurtleImageUI;
     [SerializeField] public Image LuckyTextUI;
+    [SerializeField] private GameObject akWeapon;
+    [SerializeField] private GameObject deagleWeapon;
 
     [SerializeField] private TextMeshProUGUI LuckyChance;
 
@@ -46,11 +48,6 @@ public class TargetController : MonoBehaviour
 
     void Awake(){
         specialTargetChance = 15f;
-        if (GameObject.Find("Ak")) {
-            weaponManager = GameObject.Find("Ak").GetComponent<WeaponManager>();
-        } else if (GameObject.Find("Deagle")) {
-            weaponManager = GameObject.Find("Deagle").GetComponent<WeaponManager>();
-        }
         scaleChangeSpeed = 4.0f;
         targetSize = new Vector3(1,1,1);
         minTimerToSpawn = 0f;
@@ -82,6 +79,27 @@ public class TargetController : MonoBehaviour
             Target newTarget = Instantiate(targetNormalPrefab);
             newTarget.SetupTarget(randomInitPosition, randomFinalPosition, targetSize, true, speed, b.bounds);
             AddItem(newTarget.gameObject);
+        }
+    }
+
+    void Start() {
+        setSelectedWeapon();
+        if (GameObject.Find("Ak")) {
+            weaponManager = GameObject.Find("Ak").GetComponent<WeaponManager>();
+        } else if (GameObject.Find("Deagle")) {
+            weaponManager = GameObject.Find("Deagle").GetComponent<WeaponManager>();
+        }
+    }
+
+    private void setSelectedWeapon() {
+        string weapon = WeaponSelector.Instance.SelectedWeapon.ToString();
+        Debug.Log(weapon);
+        if (weapon == "Deagle") {
+            deagleWeapon.SetActive(true);
+            akWeapon.SetActive(false);
+        } else {
+            akWeapon.SetActive(true);
+            deagleWeapon.SetActive(false);
         }
     }
     public void AddItem(GameObject item)
