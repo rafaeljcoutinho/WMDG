@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour
     private void PlayGame()
     {
         PlayerData.Instance.SetPlayerName(playerNameInput.text);
-        SceneManager.LoadScene("ModeSelector");
+        SceneManager.LoadScene("WeaponSelector");
     }
 
     private void ViewScore()
