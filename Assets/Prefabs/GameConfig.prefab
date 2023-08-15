@@ -531,6 +531,11 @@ MonoBehaviour:
   levelTextUI: {fileID: 5116159349390017426}
   x2TextUI: {fileID: 2984692873358472134}
   TimeTextUI: {fileID: 4209484024657466773}
+  TurtleImageUI: {fileID: 0}
+  LuckyTextUI: {fileID: 0}
+  akWeapon: {fileID: 0}
+  deagleWeapon: {fileID: 0}
+  LuckyChance: {fileID: 0}
 --- !u!1 &1868323632667003833
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +707,10 @@ PrefabInstance:
     - target: {fileID: 5332622680613422001, guid: 5223a75c131fdbd429dfc5d340a7fa0f, type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332622680613422001, guid: 5223a75c131fdbd429dfc5d340a7fa0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5332622680613422005, guid: 5223a75c131fdbd429dfc5d340a7fa0f, type: 3}
       propertyPath: m_Pivot.x
