@@ -6,14 +6,14 @@ public class Controller : MonoBehaviour
 {
     [SerializeField] private WeaponManager weaponManager;
     [SerializeField] private Transform firePoint;
+    [SerializeField] public bool isPaused = false;
 
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && !isPaused)
         {
             weaponManager.Shoot(firePoint);
-        }
-        if (Input.GetKeyDown(KeyCode.R))
+        } else if (Input.GetKeyDown(KeyCode.R) && !isPaused)
         {
             weaponManager.Reload();
         }

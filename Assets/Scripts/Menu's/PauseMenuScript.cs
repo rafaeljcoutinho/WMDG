@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 
 public class PauseMenuScript : MonoBehaviour
 {
@@ -14,46 +12,69 @@ public class PauseMenuScript : MonoBehaviour
 
     public int player;
 
+    public GameObject AkPlayer;
+
+    public GameObject DeaglePlayer;
+
+    public float cameraSensivity;
 
     public Button MenuButton;
     public Button ResumeButton;
     public Button SettingsButton;
 
+    public AudioMixer audioMixer;
+
     private float lastTimeScale = 1;
     // Update is called once per frame
 
-    void Update()
-    {
+    public void Update(){
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Time.timeScale != 0)
-            {
-                MenuButton.onClick.AddListener(MenuGame);
-                ResumeButton.onClick.AddListener(ResumeGame);
-                SettingsButton.onClick.AddListener(SettingsGame);
-                lastTimeScale = Time.timeScale;
-                Time.timeScale = 0;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                pauseMenu.SetActive(true);
-                hud.SetActive(false);
-                PauseHeader.gameObject.SetActive(true);
-
-
-                // Preciso retirar o cursor do controle da arma e liberar pro menu
-            }
-            else if (Time.timeScale == 0)
+            if (Time.timeScale == 0)
             {
                 ResumeGame();
             }
+            else
+            {
+                Pause();
+            }
         }
+
+    }
+
+    void Pause()
+    {
+        
+        MenuButton.onClick.AddListener(MenuGame);
+        ResumeButton.onClick.AddListener(ResumeGame);
+        SettingsButton.onClick.AddListener(SettingsGame);
+        lastTimeScale = Time.timeScale;
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        pauseMenu.SetActive(true);
+        hud.SetActive(false);
+        PauseHeader.gameObject.SetActive(true);
+        Debug.Log(AkPlayer.activeSelf);
+        if(AkPlayer.activeSelf==true){
+            player = 1;
+            AkPlayer.GetComponent<Controller>().isPaused = true;
+            cameraSensivity = AkPlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity;
+            AkPlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = 0;
+        } else if(DeaglePlayer.activeSelf==true){
+            player = 2;
+            DeaglePlayer.GetComponent<Controller>().isPaused = true;
+            cameraSensivity = DeaglePlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity;
+            DeaglePlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = 0;
+        }
+        AudioListener.pause = true;
     }
     void MenuGame()
     {
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 
     void ResumeGame()
@@ -64,7 +85,14 @@ public class PauseMenuScript : MonoBehaviour
         pauseMenu.SetActive(false);
         hud.SetActive(true);
         PauseHeader.gameObject.SetActive(false);
-        // Preciso fazer o inverso
+        if(player == 1){
+            AkPlayer.GetComponent<Controller>().isPaused = false;
+            AkPlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = cameraSensivity;
+        } else if(player == 2){
+            DeaglePlayer.GetComponent<Controller>().isPaused = false;
+            DeaglePlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = cameraSensivity;
+        }
+        AudioListener.pause = false;
     }
 
     void SettingsGame()

@@ -16,8 +16,8 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Dropdown screenModeDropdown;
     public AudioMixer audioMixer;
 
-    public Canvas SettingsPanel;
-    public Canvas PausePanel;
+    public GameObject SettingsPanel;
+    public GameObject PausePanel;
 
     public Slider volumeSlider;
 
@@ -81,9 +81,9 @@ public class SettingsMenu : MonoBehaviour
                 break;
         }
 
-        volumeSlider.value = audioMixer.GetFloat("volume", out float volume) ? volume : 0;
+        //volumeSlider.value = audioMixer.GetFloat("volume", out float volume) ? volume : 0;
 
-        volumeSlider.onValueChanged.AddListener(SetVolume);
+        //volumeSlider.onValueChanged.AddListener(SetVolume);
         goBackButton.onClick.AddListener(GoBack);
         resolutionDropdown.onValueChanged.AddListener(delegate { SetResolution();});
         graphicsDropdown.onValueChanged.AddListener(delegate { SetGraphicsSettings();});
@@ -96,8 +96,9 @@ public class SettingsMenu : MonoBehaviour
             SceneManager.LoadScene("Menu");
         else if (backScreen == "Pause")
         {
-            SettingsPanel.gameObject.SetActive(false);
-            PausePanel.gameObject.SetActive(true);
+            Debug.Log("Back to pause");
+            SettingsPanel.SetActive(false);
+            PausePanel.SetActive(true);
         }
 
     }
