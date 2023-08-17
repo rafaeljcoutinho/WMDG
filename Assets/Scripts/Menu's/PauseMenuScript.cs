@@ -11,6 +11,7 @@ public class PauseMenuScript : MonoBehaviour
     public GameObject hud;
 
     public int player;
+    public Image backgroundImage;
 
     public GameObject AkPlayer;
 
@@ -68,6 +69,7 @@ public class PauseMenuScript : MonoBehaviour
             DeaglePlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = 0;
         }
         AudioListener.pause = true;
+        backgroundImage.gameObject.SetActive(true);
     }
     void MenuGame()
     {
@@ -83,6 +85,7 @@ public class PauseMenuScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
         hud.SetActive(true);
         PauseHeader.gameObject.SetActive(false);
         if(player == 1){
@@ -93,6 +96,7 @@ public class PauseMenuScript : MonoBehaviour
             DeaglePlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = cameraSensivity;
         }
         AudioListener.pause = false;
+        backgroundImage.gameObject.SetActive(false);
     }
 
     void SettingsGame()
