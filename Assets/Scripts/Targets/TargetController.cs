@@ -193,10 +193,10 @@ public class TargetController : MonoBehaviour
 
     private void Update() {
 
-        Debug.Log("speed: " + speed);
-        Debug.Log("targetSize: " + targetSize);
-        Debug.Log("luckyChance: " + specialTargetChance + "%");
-        Debug.Log("valueMultiplier: " + valueMultiplier);
+        //Debug.Log("speed: " + speed);
+        //Debug.Log("targetSize: " + targetSize);
+        //Debug.Log("luckyChance: " + specialTargetChance + "%");
+        //Debug.Log("valueMultiplier: " + valueMultiplier);
         //Debug.Log("hits: " + playerKills);
         //Debug.Log("shots: " + playerShoots);
 

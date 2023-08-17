@@ -15,7 +15,13 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Dropdown graphicsDropdown;
     public TMP_Dropdown screenModeDropdown;
     public AudioMixer audioMixer;
+
+    public GameObject SettingsPanel;
+    public GameObject PausePanel;
+
     public Slider volumeSlider;
+
+    public string backScreen;
 
     private Resolution[] resolutions;
     private List<OptionData> resolution_names;
@@ -75,18 +81,26 @@ public class SettingsMenu : MonoBehaviour
                 break;
         }
 
+        //volumeSlider.value = audioMixer.GetFloat("volume", out float volume) ? volume : 0;
+
+        //volumeSlider.onValueChanged.AddListener(SetVolume);
         goBackButton.onClick.AddListener(GoBack);
         resolutionDropdown.onValueChanged.AddListener(delegate { SetResolution();});
         graphicsDropdown.onValueChanged.AddListener(delegate { SetGraphicsSettings();});
         screenModeDropdown.onValueChanged.AddListener(delegate { SetScreenMode();});
-        volumeSlider.value = audioMixer.GetFloat("volume", out float volume) ? volume : 0;
-        Debug.Log("Volume = " + audioMixer.GetFloat("volume", out volume));
-        Debug.Log("Volume = " + volume);
     }
 
     private void GoBack()
     {
-        SceneManager.LoadScene("Menu");
+        if (backScreen == "Menu")
+            SceneManager.LoadScene("Menu");
+        else if (backScreen == "Pause")
+        {
+            Debug.Log("Back to pause");
+            SettingsPanel.SetActive(false);
+            PausePanel.SetActive(true);
+        }
+
     }
 
     private void SetResolution(){
@@ -115,7 +129,6 @@ public class SettingsMenu : MonoBehaviour
     }
 
     public void SetVolume(float volume){
-        Debug.Log("Setting volume = " + volume);
         audioMixer.SetFloat("volume", volume);
     }
 } 
