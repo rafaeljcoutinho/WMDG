@@ -8,6 +8,7 @@ public class TargetTurttle : Target
     private bool isAutoDestroy;
 
     private void Start() {
+        PlayerData.Instance.allSpecialTargets++;
         isAutoDestroy = false;
         StartCoroutine(AutoDestroy());
     }
@@ -21,6 +22,7 @@ public class TargetTurttle : Target
 
     private void OnDestroy() {
         if(!isAutoDestroy){
+            PlayerData.Instance.specialTargetsHit++;
             TargetController.Instance.SetTimeScale(5);
         }
         else 

@@ -8,6 +8,7 @@ public class TargetClock : Target
     private bool isAutoDestroy;
 
     private void Start() {
+        PlayerData.Instance.allSpecialTargets++;
         timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         isAutoDestroy = false;
         StartCoroutine(AutoDestroy());
@@ -15,8 +16,10 @@ public class TargetClock : Target
 
 
     private void OnDestroy() {
-        if(!isAutoDestroy)
+        if(!isAutoDestroy){
+            PlayerData.Instance.specialTargetsHit++;
             TargetController.Instance.SetAddTime(3f, timeManager);
+        }
         else 
             TargetController.Instance.AdjustPlayerKills();
     }  

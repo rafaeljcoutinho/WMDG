@@ -63,6 +63,7 @@ public class WeaponManager : MonoBehaviour
             { 
                 nextFire = Time.unscaledTime + timeToShoot;
                 TargetController.Instance.PlayerShoot();
+                PlayerData.Instance.shotsFired++;
                 weaponAnimator.SetTrigger("Fire");
                 shotAudio.Play();
                 muzzleFlash.Play();

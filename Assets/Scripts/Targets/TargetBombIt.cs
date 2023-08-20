@@ -7,14 +7,17 @@ public class TargetBombIt : Target
     private bool isAutoDestroy;
 
     private void Start() {
+        PlayerData.Instance.allSpecialTargets++;
         isAutoDestroy = false;
         StartCoroutine(AutoDestroy());
     }
 
 
     private void OnDestroy() {
-        if(!isAutoDestroy)
+        if(!isAutoDestroy){
+            PlayerData.Instance.specialTargetsHit++;
             TargetController.Instance.BombIt();
+        }
         else 
             TargetController.Instance.AdjustPlayerKills();
     }

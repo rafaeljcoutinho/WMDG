@@ -43,7 +43,7 @@ public class SaveMethod : MonoBehaviour
         }
         else
         {
-            // Retorna uma lista vazia se o arquivo não existir
+            // Retorna uma lista vazia se o arquivo nï¿½o existir
             return new List<Dictionary<string, int>>();
         }
     }

@@ -186,6 +186,7 @@ public class TargetController : MonoBehaviour
             newTarget.SetupTarget(randomInitPosition, randomFinalPosition, targetSize, true, speed, bounds);
             AddItem(newTarget.gameObject);
         }
+
     }
 
 
@@ -293,6 +294,7 @@ public class TargetController : MonoBehaviour
 
     public void BombIt(){
         for(int i=targetList.Count-1 ; i>=0 ; i--){
+            PlayerData.Instance.targetsHit--;
             targetList[i].GetComponent<Target>().TakeDamage();
         }
     }

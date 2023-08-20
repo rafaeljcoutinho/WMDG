@@ -32,6 +32,7 @@ public class BulletController : MonoBehaviour
         for(int i = 0 ; i < hit.Length ; i++)
         {
             hit[i].collider.GetComponentInParent<Target>().TakeDamage();
+            PlayerData.Instance.targetsHit++;
         }
     }
 
