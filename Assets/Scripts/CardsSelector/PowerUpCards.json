@@ -1,0 +1,24 @@
+{
+    "Cards" : [{
+        "id" : 1,
+        "type" : "PowerUp",
+        "name" : "Automatic Rifle",
+        "description" : "You get an automatic rifle with",
+        "image" : "images/automatic_rifle.png",
+        "modifier" :  20
+    },{
+        "id" : 2,
+        "type" : "PowerUp",
+        "name" : "Frozen Grenade",
+        "description" : "You get a frozen grenade",
+        "image" : "images/frozen_grenade.png",
+        "modifier" :  1
+    },{
+        "id" : 3,
+        "type" : "PowerUp",
+        "name" : "Explosive Grenade",
+        "description" : "You get an explosive grenade",
+        "image" : "images/explosive_grenade.png",
+        "modifier" :  1
+    }]
+}

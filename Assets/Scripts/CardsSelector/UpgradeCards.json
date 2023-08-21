@@ -1,0 +1,24 @@
+{
+    "Cards" : [{
+        "id" : 1,
+        "type" : "Upgrade",
+        "name" : "Precision",
+        "description" : "Downgrade the recoil of your first weapon by:",
+        "image" : "images/precision.png",
+        "modifier" :  -0.1
+
+    },{
+        "id" : 2,
+        "type" : "Upgrade",
+        "name" : "Fire rate",
+        "description" : "Increase the fire rate of your first weapon by:",
+        "image" : "images/fireRate.png",
+        "modifier" :  0.1
+    },{
+        "id" : 3,
+        "type" : "Upgrade",
+        "name" : "Increase Recoil Speed",
+        "description" : "Increase the recoil speed of your first weapon by:",
+        "modifier" :  0.1
+    }]
+}
