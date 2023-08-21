@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WeaponSelector.unity
     guid: db9132f080bc0dc4080b85c26e12a8e4
+  - enabled: 1
+    path: Assets/Scenes/LuckyModeScene.unity
+    guid: f55f0e1a00b10624999565b7132a0424
   m_configObjects: {}

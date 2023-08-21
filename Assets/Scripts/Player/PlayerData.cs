@@ -21,7 +21,7 @@ public class PlayerData : MonoBehaviour
     public float accuracy = 0;
 
     public float timer;
-    public int scoreMultiplier = 1;
+    public float scoreMultiplier = 1;
 
     public bool automaticRifle = false;
     public bool frozenGrenade = false;

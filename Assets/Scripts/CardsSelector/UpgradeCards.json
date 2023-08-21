@@ -1,4 +1,5 @@
-[
+{
+    "Cards" : [
     {
         "id" : 1,
         "type" : "Upgrade",
@@ -13,5 +14,5 @@
         "name" : "Reload Speed",
         "description" : "Increase the reload speed of your first weapon by:",
         "modifier" :  0.1
-    }
-]
+    }]
+}

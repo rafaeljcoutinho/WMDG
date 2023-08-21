@@ -1,4 +1,5 @@
-[
+{
+    "Cards" : [
     {
         "id" : 1,
         "type" : "Bonus",
@@ -13,5 +14,5 @@
         "description" : "Increase the score multiplier by:",
         "image" : "images/score_multiplier.png",
         "modifier" :  1
-    }
-]
+    }]
+}

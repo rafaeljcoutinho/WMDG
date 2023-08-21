@@ -1,4 +1,5 @@
-[
+{
+    "Cards" : [
     {
         "id" : 2,
         "type" : "PowerUp",
@@ -13,5 +14,5 @@
         "description" : "You get an explosive grenade",
         "image" : "images/explosive_grenade.png",
         "modifier" :  1
-    }
-]
+    }]
+}
