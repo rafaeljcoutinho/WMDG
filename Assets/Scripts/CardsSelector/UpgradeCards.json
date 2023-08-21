@@ -1,5 +1,5 @@
-{
-    "Cards" : [{
+[
+    {
         "id" : 1,
         "type" : "Upgrade",
         "name" : "Precision",
@@ -8,17 +8,10 @@
         "modifier" :  -0.1
 
     },{
-        "id" : 2,
-        "type" : "Upgrade",
-        "name" : "Fire rate",
-        "description" : "Increase the fire rate of your first weapon by:",
-        "image" : "images/fireRate.png",
-        "modifier" :  0.1
-    },{
         "id" : 3,
         "type" : "Upgrade",
-        "name" : "Increase Recoil Speed",
-        "description" : "Increase the recoil speed of your first weapon by:",
+        "name" : "Reload Speed",
+        "description" : "Increase the reload speed of your first weapon by:",
         "modifier" :  0.1
-    }]
-}
+    }
+]

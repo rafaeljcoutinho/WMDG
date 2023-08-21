@@ -1,9 +1,17 @@
+using Newtonsoft.Json;
 public class Card {
-    private string id {get;}
-    private string name {get; set;}
-    private string description {get; set;}
-    private string type {get; set;}
-    private string image {get; set;}
+    [JsonProperty("id")]
+    private string id {get; set; }
+    [JsonProperty("name")]
+    public string name {get; set;}
+    [JsonProperty("description")]
+    public string description {get; set;}
+    [JsonProperty("type")]
+    public string type {get; set;}
+    [JsonProperty("image")]
+    public string image {get; set;}
+    [JsonProperty("modifier")]
+    public string modifier {get; set;}
 
     public Card(string id, string name, string description, string type, string image){
         this.id = id;

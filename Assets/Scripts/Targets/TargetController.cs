@@ -35,13 +35,13 @@ public class TargetController : MonoBehaviour
     private int playerKills;
     private float speed;
     private float value;
-    private float valueMultiplier;
 
     private int bonusTime;
     private Vector3 targetSize;
     private List<GameObject> targetList = new List<GameObject>();
+    private float lastTimeScale;
 
-    public float Value => value * valueMultiplier;
+    public float Value => value * PlayerData.Instance.scoreMultiplier;
     public Vector3 CurrentScale => currentScale;
 
 
@@ -56,7 +56,6 @@ public class TargetController : MonoBehaviour
         playerKills = 6;
         playerShoots = 10;
         value = 10;
-        valueMultiplier = 1;
         if(Instance == null){
             Instance = this;
         }else
@@ -202,8 +201,8 @@ public class TargetController : MonoBehaviour
         //Debug.Log("shots: " + playerShoots);
 
 
-        if(valueMultiplier >= 2f){
-            x2TextUI.text = "x " + valueMultiplier;
+        if(PlayerData.Instance.scoreMultiplier >= 2f){
+            x2TextUI.text = "x " + PlayerData.Instance.scoreMultiplier;
             x2TextUI.gameObject.SetActive(true);
         }else{
             x2TextUI.gameObject.SetActive(false);
@@ -267,13 +266,13 @@ public class TargetController : MonoBehaviour
     }
 
     private IEnumerator SetDoublePointsCoroutine(float t){
-        valueMultiplier = valueMultiplier * 2;
-        x2TextUI.text = "x"+valueMultiplier;
+        PlayerData.Instance.scoreMultiplier = PlayerData.Instance.scoreMultiplier * 2;
+        x2TextUI.text = "x"+PlayerData.Instance.scoreMultiplier;
         yield return new WaitForSecondsRealtime(t);
-        valueMultiplier = valueMultiplier * 1/2;
-        if(valueMultiplier == 1)
+        PlayerData.Instance.scoreMultiplier = PlayerData.Instance.scoreMultiplier * 1/2;
+        if(PlayerData.Instance.scoreMultiplier == 1)
             x2TextUI.gameObject.SetActive(false);
-        x2TextUI.text = "x"+valueMultiplier;
+        x2TextUI.text = "x"+PlayerData.Instance.scoreMultiplier;
         yield return null;
     }
 
@@ -334,4 +333,29 @@ public class TargetController : MonoBehaviour
         StartCoroutine(SetAddTimeCoroutine(t, timeManager));
     }
 
+    public void Frozen(float t){
+        StartCoroutine(FrozenCoroutine(t));
+    }
+
+    IEnumerator FrozenCoroutine(float t)
+    {
+        TurtleImageUI.gameObject.SetActive(true);
+        lastTimeScale = Time.timeScale;
+        Time.timeScale = 0;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        yield return new WaitForSecondsRealtime(t);
+        Time.timeScale = lastTimeScale;
+        Time.fixedDeltaTime = Time.timeScale / 0.02f;
+    }
+
+    public void Explode(){
+        StartCoroutine(ExplodeCoroutine());
+    }
+
+    IEnumerator ExplodeCoroutine(){
+        yield return new WaitForSecondsRealtime(0.5f);
+        for(int i=targetList.Count-1 ; i>=0 ; i--){
+            targetList[i].GetComponent<Target>().TakeDamage();
+        }
+    }
 }

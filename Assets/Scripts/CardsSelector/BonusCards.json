@@ -1,5 +1,5 @@
-{
-    "Cards" : [{
+[
+    {
         "id" : 1,
         "type" : "Bonus",
         "name" : "Time",
@@ -13,12 +13,5 @@
         "description" : "Increase the score multiplier by:",
         "image" : "images/score_multiplier.png",
         "modifier" :  1
-    },{
-        "id" : 3,
-        "type" : "Bonus",
-        "name" : "Ammo",
-        "description" : "Increase the ammo by:",
-        "image" : "images/bonus_ammo.png",
-        "modifier" :  50
-    }]
-}
+    }
+]
