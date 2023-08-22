@@ -4,15 +4,16 @@
         "id" : 1,
         "type" : "Upgrade",
         "name" : "Precision",
-        "description" : "Downgrade the recoil of your first weapon by:",
-        "image" : "images/precision.png",
-        "modifier" :  -0.1
+        "description" : "Decrease the recoil of your first weapon by:",
+        "image" : "/Assets/Images/Icons/precision.png",
+        "modifier" :  0.1
 
     },{
         "id" : 3,
         "type" : "Upgrade",
         "name" : "Reload Speed",
         "description" : "Increase the reload speed of your first weapon by:",
+        "image" : "/Assets/Images/Icons/reload_speed.png",
         "modifier" :  0.1
     }]
 }

@@ -5,14 +5,14 @@
         "type" : "Bonus",
         "name" : "Time",
         "description" : "Increase the time by:",
-        "image" : "images/bonus_time.png",
+        "image" : "/Assets/Images/Icons/bonus_time.png",
         "modifier" :  20
     },{
         "id" : 2,
         "type" : "Bonus",
         "name" : "Score Multiplier",
         "description" : "Increase the score multiplier by:",
-        "image" : "images/score_multiplier.png",
+        "image" : "/Assets/Images/Icons/score_multiplier.png",
         "modifier" :  1
     }]
 }

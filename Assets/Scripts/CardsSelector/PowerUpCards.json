@@ -5,14 +5,14 @@
         "type" : "PowerUp",
         "name" : "Frozen Grenade",
         "description" : "You get a frozen grenade",
-        "image" : "images/frozen_grenade.png",
+        "image" : "/Assets/Images/Icons/frozen_grenade.png",
         "modifier" :  1
     },{
         "id" : 3,
         "type" : "PowerUp",
         "name" : "Explosive Grenade",
         "description" : "You get an explosive grenade",
-        "image" : "images/explosive_grenade.png",
+        "image" : "/Assets/Images/Icons/explosive_grenade.png",
         "modifier" :  1
     }]
 }
