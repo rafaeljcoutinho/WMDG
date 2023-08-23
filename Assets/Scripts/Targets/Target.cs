@@ -6,7 +6,7 @@ using TMPro;
 public class Target : MonoBehaviour
 {
     [SerializeField] private bool moveTarget;
-    [SerializeField] private float speed;
+    [SerializeField] public float speed;
 
 
     [SerializeField] private Vector3 initPosition;

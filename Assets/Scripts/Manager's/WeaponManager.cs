@@ -93,6 +93,10 @@ public class WeaponManager : MonoBehaviour
 
     private IEnumerator ApplyRecoil()
     {
+        if (recoilMultiplier>0)
+            recoilMultiplier = 1 - PlayerData.Instance.precision;
+        if (recoilMultiplier < 0)
+            recoilMultiplier = 0;
         Vector2 recoilAmount = new Vector2(-recoilY * recoilMultiplier * Random.Range(0.2f, 1f), recoilX * recoilMultiplier * Random.Range(-0.2f, 0.2f));
         float recoilOverTime = 0.1f;
         float recoveryTime = 0.1f;
@@ -140,7 +144,8 @@ public class WeaponManager : MonoBehaviour
         if(!isReloading)
         {
             isReloading = true;
-            //playReloadingAnimation
+            //playReloadingAnimation]
+            weaponAnimator.speed = PlayerData.Instance.reloadSpd;
             weaponAnimator.SetTrigger("Reload");
             ammoUI.text = "Reloading...";
             StartCoroutine(WaitToReload());
