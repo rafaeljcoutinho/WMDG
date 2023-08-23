@@ -34,6 +34,7 @@ public class MainMenu : MonoBehaviour
     private void PlayGame()
     {
         PlayerData.Instance.SetPlayerName(playerNameInput.text);
+        PlayerData.Instance.tag = "PlayerData";
         SceneManager.LoadScene("WeaponSelector");
     }
 
