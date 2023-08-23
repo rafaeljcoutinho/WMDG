@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PauseMenu
   - frozenTarget
+  - GameMusic
+  - PlayerData
   layers:
   - Default
   - TransparentFX

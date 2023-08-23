@@ -38,6 +38,15 @@ public class PlayerData : MonoBehaviour
         {
             Instance = this;
         }
+        this.gameObject.tag = "PlayerData";
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("PlayerData");
+
+        if (objs.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+
+
         DontDestroyOnLoad(gameObject);
     }
 
