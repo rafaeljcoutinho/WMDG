@@ -29,8 +29,8 @@ public class PlayerData : MonoBehaviour
 
     public float precision = 0;
     public float fireRate = 0;
-    public float reloadSpd = 0;
-
+    public float reloadSpd = 1;
+    internal bool isPaused = false;
 
     private void Awake()
     {
@@ -60,6 +60,14 @@ public class PlayerData : MonoBehaviour
         shotsFired = 0;
         accuracy = 0;
         timer = 60;
+        scoreMultiplier = 1;
+        automaticRifle = false;
+        frozenGrenade = false;
+        explosiveGrenade = false;
+        precision = 0;
+        fireRate = 0;
+        reloadSpd = 1;
+        isPaused = false;
     }
 
     public void Save()

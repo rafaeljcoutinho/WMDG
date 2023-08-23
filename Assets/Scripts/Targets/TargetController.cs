@@ -34,11 +34,13 @@ public class TargetController : MonoBehaviour
     private int playerShoots;
     private int playerKills;
     private float speed;
-    private float value;
-
+    private float value;    
     private int bonusTime;
+
+    public bool isShaking = false;
+
     private Vector3 targetSize;
-    private List<GameObject> targetList = new List<GameObject>();
+    public List<GameObject> targetList = new List<GameObject>();
     private float lastTimeScale;
 
     public float Value => value * PlayerData.Instance.scoreMultiplier;
@@ -296,6 +298,7 @@ public class TargetController : MonoBehaviour
             PlayerData.Instance.targetsHit--;
             targetList[i].GetComponent<Target>().TakeDamage();
         }
+        isShaking = true;
     }
 
     public void SetUnlimitedAmmo(){
@@ -339,13 +342,15 @@ public class TargetController : MonoBehaviour
 
     IEnumerator FrozenCoroutine(float t)
     {
-        TurtleImageUI.gameObject.SetActive(true);
-        lastTimeScale = Time.timeScale;
-        Time.timeScale = 0;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        Color32 frozenColor = new Color32(152, 217, 250,98);
+        speed = 0.5f;
+        speed = targetList[0].GetComponent<Target>().speed;
+        for(int i=targetList.Count-1 ; i>=0 ; i--){
+            targetList[i].GetComponent<Target>().speed = 0;
+            targetList[i].GetComponent<Target>().tag = "frozenTarget";
+            targetList[i].GetComponent<Target>().GetComponentInChildren<Renderer>().material.color = frozenColor; 
+        }
         yield return new WaitForSecondsRealtime(t);
-        Time.timeScale = lastTimeScale;
-        Time.fixedDeltaTime = Time.timeScale / 0.02f;
     }
 
     public void Explode(){
@@ -354,8 +359,6 @@ public class TargetController : MonoBehaviour
 
     IEnumerator ExplodeCoroutine(){
         yield return new WaitForSecondsRealtime(0.5f);
-        for(int i=targetList.Count-1 ; i>=0 ; i--){
-            targetList[i].GetComponent<Target>().TakeDamage();
-        }
+        isShaking = true;
     }
 }

@@ -144,7 +144,8 @@ public class WeaponManager : MonoBehaviour
         if(!isReloading)
         {
             isReloading = true;
-            //playReloadingAnimation
+            //playReloadingAnimation]
+            weaponAnimator.speed = PlayerData.Instance.reloadSpd;
             weaponAnimator.SetTrigger("Reload");
             ammoUI.text = "Reloading...";
             StartCoroutine(WaitToReload());

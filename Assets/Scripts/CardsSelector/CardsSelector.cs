@@ -37,127 +37,185 @@ public class CardsSelector : MonoBehaviour
     private float lastTimeScale;
 
     private int scoreMultiplier = 1;
+    private bool cardsDrawed;
+    private int  lastscore = 0;
 
     [SerializeField] private GameObject frozenGranade;
     [SerializeField] private GameObject explosiveGranade;
 
-    public void Update(){
-        //imprimir o path local
-        Debug.Log(Application.dataPath);
-        if (PlayerData.Instance.PlayerScore > 100*scoreMultiplier && PlayerData.Instance.PlayerScore != 0)
-        {
-            scoreMultiplier++;
-            isCardSelected = false;
-        }
-        if (isCardSelected == false){
-            Hud.SetActive(false);
-            if(AkPlayer.activeSelf==true){
-                player = 1;
-                AkPlayer.GetComponent<Controller>().isPaused = true;
-                cameraSensivity = AkPlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity;
-                AkPlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = 0;
-            } else if(DeaglePlayer.activeSelf==true){
-                player = 2;
-                DeaglePlayer.GetComponent<Controller>().isPaused = true;
-                cameraSensivity = DeaglePlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity;
-                DeaglePlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = 0;
-            }
-            
-            lastTimeScale = Time.timeScale;
-            Time.timeScale = 0f;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+    [SerializeField] private Image More_Time;
+    [SerializeField] private Image Score_Multiplier;
 
-            cardSelector.SetActive(true);
+    [SerializeField] private Image Frozen_Grenade;
+    [SerializeField] private Image Explosive_Grenade;
+
+    [SerializeField] private Image Precision;
+    [SerializeField] private Image Reload_Speed;
+
+    public void Update(){
+        if(Time.timeScale != 0){
+            if (PlayerData.Instance.PlayerScore > 100*scoreMultiplier+lastscore && PlayerData.Instance.PlayerScore != 0)
+            {
+                lastscore = 100*scoreMultiplier+lastscore;
+                scoreMultiplier++;
+                isCardSelected = false;
+            }
+            if (isCardSelected == false){
+                if( cardsDrawed == false){
+                Hud.SetActive(false);
+                if(AkPlayer.activeSelf==true){
+                    player = 1;
+                    if (cameraSensivity != 0){
+                        cameraSensivity = AkPlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity;
+                    }
+                    AkPlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = 0;
+                    AkPlayer.GetComponent<Controller>().isPaused = true;
+                } else if(DeaglePlayer.activeSelf==true){
+                    player = 2;
+                    if (cameraSensivity != 0){
+                        cameraSensivity = DeaglePlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity;
+                    }
+                    DeaglePlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = 0;
+                    DeaglePlayer.GetComponent<Controller>().isPaused = true;
+                }
+                lastTimeScale = Time.timeScale;
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+
+                cardSelector.SetActive(true);
                 Card[] cards = CardsDrawer.drawCards();
-                
+                cardsDrawed = true;
                 card1Text.text = cards[0].name;
                 card2Text.text = cards[1].name;
                 card3Text.text = cards[2].name;
 
-                card1Description.text = cards[0].description + " " + (cards[0].modifier * 100) + "%";
-                card2Description.text = cards[1].description + " " + (cards[1].modifier * 100) + "%";
+
+                if (cards[0].name != "More Time")
+                    card1Description.text = cards[0].description + " " + cards[0].modifier + " times ";
+                else
+                    card1Description.text = cards[0].description + " " + cards[0].modifier + "s";
+                card2Description.text = cards[1].description;
                 card3Description.text = cards[2].description + " " + (cards[2].modifier * 100) + "%";
 
-                try{
-                    card1Image.sprite = Resources.Load<Sprite>(cards[0].image);
-                }catch{
-                    Debug.Log("Image "+ cards[0].image +" not found");
+                if (cards[0].name == "More Time"){
+                    More_Time.gameObject.SetActive(true);
+                    Score_Multiplier.gameObject.SetActive(false);
                 }
-                try{
-                    card2Image.sprite = Resources.Load<Sprite>(cards[1].image);
-                }catch{
-                    Debug.Log("Image "+ cards[1].image +" not found");
+                else if (cards[0].name == "Score Multiplier"){
+                    More_Time.gameObject.SetActive(false);
+                    Score_Multiplier.gameObject.SetActive(true);
+
                 }
-                try{
-                    card3Image.sprite = Resources.Load<Sprite>(cards[2].image);
-                }catch{
-                    Debug.Log("Image "+ cards[2].image +" not found");
+                if ( cards[1].name == "Frozen Grenade"){
+                    Frozen_Grenade.gameObject.SetActive(true);
+                    Explosive_Grenade.gameObject.SetActive(false);
+                }
+                else if (cards[1].name == "Explosive Grenade"){
+                    Frozen_Grenade.gameObject.SetActive(false);
+                    Explosive_Grenade.gameObject.SetActive(true);
+                }
+                if (cards[2].name == "Precision"){
+                    Precision.gameObject.SetActive(true);
+                    Reload_Speed.gameObject.SetActive(false);
+                }
+                else if (cards[2].name == "Reload Speed"){
+                    Precision.gameObject.SetActive(false);
+                    Reload_Speed.gameObject.SetActive(true);
                 }
                 
                 card1Button.onClick.AddListener(delegate { selectCard(cards[0]); });
                 card2Button.onClick.AddListener(delegate { selectCard(cards[1]); });
                 card3Button.onClick.AddListener(delegate { selectCard(cards[2]); });
-        }else{
-            cardSelector.SetActive(false);
-            if (Time.timeScale == 0f){
-                Time.timeScale = lastTimeScale;
-            }
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+                }
+            }else{
+                cardSelector.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
 
-            if(Input.GetKeyDown(KeyCode.F) && PlayerData.Instance.frozenGrenade == true){
-                PlayerData.Instance.frozenGrenade = false;
-                frozenGranade.SetActive(false);
-                TargetController.Instance.Frozen(10f);
+                if(Input.GetKeyDown(KeyCode.F) && PlayerData.Instance.frozenGrenade == true){
+                    PlayerData.Instance.frozenGrenade = false;
+                    frozenGranade.SetActive(false);
+                    TargetController.Instance.Frozen(10f);
 
-            }
-            if(Input.GetKeyDown(KeyCode.E) && PlayerData.Instance.explosiveGrenade == true){
-                PlayerData.Instance.explosiveGrenade = false;
-                explosiveGranade.SetActive(false);
-                TargetController.Instance.Explode();
-            }
+                }
+                if(Input.GetKeyDown(KeyCode.E) && PlayerData.Instance.explosiveGrenade == true){
+                    PlayerData.Instance.explosiveGrenade = false;
+                    explosiveGranade.SetActive(false);
+                    TargetController.Instance.Explode();
+                }
+                frozenGranade.SetActive(PlayerData.Instance.frozenGrenade);
+                explosiveGranade.SetActive(PlayerData.Instance.explosiveGrenade);
+            }   
         }
-        frozenGranade.SetActive(PlayerData.Instance.frozenGrenade);
-        explosiveGranade.SetActive(PlayerData.Instance.explosiveGrenade);
     }
 
     public void selectCard(Card card){
-        Hud.SetActive(true);
+        float defaultCameraSensivity = 300f;
+        GameObject gameConfig = GameObject.Find("GameConfig");
+        if (PlayerData.Instance.isPaused == true){
+            gameConfig.GetComponent<PauseMenuScript>().lastTimeScale = lastTimeScale;
+            if (cameraSensivity != 0){
+                gameConfig.GetComponent<PauseMenuScript>().cameraSensivity = cameraSensivity;
+            } else{
+                    gameConfig.GetComponent<PauseMenuScript>().cameraSensivity = defaultCameraSensivity;
+            }
+        }else{
+            Hud.SetActive(true);
+            Time.timeScale = lastTimeScale;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            if(player == 1){
+                    AkPlayer.GetComponent<Controller>().isPaused = false;
+                    if (cameraSensivity != 0){
+                        AkPlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = cameraSensivity;
+                    } else {
+                        AkPlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = defaultCameraSensivity;
+                    }
+                } else if(player == 2){
+                    DeaglePlayer.GetComponent<Controller>().isPaused = false;
+                    if (cameraSensivity != 0){
+                        DeaglePlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = cameraSensivity;
+                    } else {
+                        DeaglePlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = defaultCameraSensivity;
+                    }
+                }
 
-        Time.timeScale = lastTimeScale;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        }
+        More_Time.gameObject.SetActive(false);
+        Score_Multiplier.gameObject.SetActive(false);
+        Frozen_Grenade.gameObject.SetActive(false);
+        Explosive_Grenade.gameObject.SetActive(false);
+        Precision.gameObject.SetActive(false);
+        Reload_Speed.gameObject.SetActive(false);
+        
+
         cardSelector.SetActive(false);
         isCardSelected = true;
 
 
-        if(card.type == "Bonus"){
-            if(card.name == "Time"){
-                PlayerData.Instance.timer += card.modifier;
-            }else if(card.name == "Score Multiplier"){
+        if(card.type == "Bonus" && cardsDrawed == true){
+            cardsDrawed = false;
+            if(card.name == "More Time"){
+                PlayerData.Instance.timer += (int)card.modifier;
+            }
+            else if(card.name == "Score Multiplier"){
                 PlayerData.Instance.scoreMultiplier += card.modifier;
             }
-        } else if(card.type == "PowerUp"){
+        } else if(card.type == "PowerUp" && cardsDrawed == true){
+            cardsDrawed = false;
             if(card.name == "Frozen Grenade"){
                 PlayerData.Instance.frozenGrenade = true;
             }else if(card.name == "Explosive Grenade"){
                 PlayerData.Instance.explosiveGrenade = true;
             }
-        } else if(card.type == "Upgrade"){
+        } else if(card.type == "Upgrade" && cardsDrawed == true){
+            cardsDrawed = false;
             if(card.name == "Precision"){
                 PlayerData.Instance.precision += card.modifier;
             }else if(card.name == "Reload Speed"){
                 PlayerData.Instance.reloadSpd += card.modifier;
             }
-        }
-
-       if(player == 1){
-            AkPlayer.GetComponent<Controller>().isPaused = false;
-            AkPlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = cameraSensivity;
-        } else if(player == 2){
-            DeaglePlayer.GetComponent<Controller>().isPaused = false;
-            DeaglePlayer.GetComponentInChildren<Camera>().GetComponent<CameraController>().mouseSensitivity = cameraSensivity;
         }
 
     }
