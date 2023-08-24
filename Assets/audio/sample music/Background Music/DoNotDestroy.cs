@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class DoNotDestroy : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
     void Awake()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("GameMusic");
@@ -16,41 +17,11 @@ public class DoNotDestroy : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
-        AudioSource[] audioSources = new AudioSource[2];
-        audioSources = this.gameObject.GetComponents<AudioSource>(); 
-        foreach (AudioSource audioSource in audioSources)
-        {
-            audioSource.enabled = true;
-        }
-        if (SceneManager.GetActiveScene().name == "GameScene" || SceneManager.GetActiveScene().name == "LuckyModeScene")
-        {
-            audioSources[0].Stop();
-            audioSources[1].Play();
-            return;
-        }
-        audioSources[0].Play();
-        audioSources[1].Stop();
-    }
 
-    public void Start() {
-        
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("GameMusic");
-
-        if (objs.Length > 1)
+        if (!audioSource.isPlaying)
         {
-            Destroy(this.gameObject);
+            audioSource.Play();
         }
 
-        DontDestroyOnLoad(this.gameObject);
-        AudioSource[] audioSources = new AudioSource[2];
-        audioSources = this.gameObject.GetComponents<AudioSource>(); 
-        if (SceneManager.GetActiveScene().name == "GameScene" || SceneManager.GetActiveScene().name == "LuckyModeScene")
-        {
-            audioSources[0].Stop();
-            audioSources[1].Play();
-            return;
-        }
-        audioSources[0].Play();
-        audioSources[1].Stop();
     }
 }

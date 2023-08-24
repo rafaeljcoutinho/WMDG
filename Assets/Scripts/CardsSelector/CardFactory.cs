@@ -15,9 +15,9 @@ public class CardFactory{
                     id = id,
                     type = type,
                     name = "Score Multiplier",
-                    description = "Increase the score multiplier",
+                    description = "Increase the score multiplier by 1",
                     image = "/Assets/Images/Icons/score_multiplier.png",
-                    modifier =  2f
+                    modifier =  1f
                 };
             }
         } else if(type == "PowerUp"){

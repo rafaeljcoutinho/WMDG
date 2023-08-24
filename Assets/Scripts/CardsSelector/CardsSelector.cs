@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using System;
 
 public class CardsSelector : MonoBehaviour
 {
@@ -28,9 +29,17 @@ public class CardsSelector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI card2Description;
     [SerializeField] private TextMeshProUGUI card3Description;
 
-    [SerializeField] private Image card1Image;
-    [SerializeField] private Image card2Image;
-    [SerializeField] private Image card3Image;
+    private int card1Id;
+    private int card2Id;
+    private int card3Id;
+
+    private string card1Type;
+    private string card2Type;
+    private string card3Type;
+
+    private float card1Modifier;
+    private float card2Modifier;
+    private float card3Modifier;
 
     [SerializeField] private bool isCardSelected=true;
 
@@ -84,12 +93,24 @@ public class CardsSelector : MonoBehaviour
                 Cursor.visible = true;
 
                 cardSelector.SetActive(true);
-                Card[] cards = CardsDrawer.drawCards();
                 cardsDrawed = true;
+                Card[] cards = CardsDrawer.drawCards();
+                
                 card1Text.text = cards[0].name;
                 card2Text.text = cards[1].name;
                 card3Text.text = cards[2].name;
 
+                card1Id = cards[0].id;
+                card2Id = cards[1].id;
+                card3Id = cards[2].id;
+
+                card1Type = cards[0].type;
+                card2Type = cards[1].type;
+                card3Type = cards[2].type;
+
+                card1Modifier = cards[0].modifier;
+                card2Modifier = cards[1].modifier;
+                card3Modifier = cards[2].modifier;
 
                 if (cards[0].name != "More Time")
                     card1Description.text = cards[0].description + " " + cards[0].modifier + " times ";
@@ -124,9 +145,9 @@ public class CardsSelector : MonoBehaviour
                     Reload_Speed.gameObject.SetActive(true);
                 }
                 
-                card1Button.onClick.AddListener(delegate { selectCard(cards[0]); });
-                card2Button.onClick.AddListener(delegate { selectCard(cards[1]); });
-                card3Button.onClick.AddListener(delegate { selectCard(cards[2]); });
+                card1Button.onClick.AddListener(delegate { selectCard(card1Id,card1Type); });
+                card2Button.onClick.AddListener(delegate { selectCard(card2Id,card2Type); });
+                card3Button.onClick.AddListener(delegate { selectCard(card3Id,card3Type); });
                 }
             }else{
                 cardSelector.SetActive(false);
@@ -150,7 +171,7 @@ public class CardsSelector : MonoBehaviour
         }
     }
 
-    public void selectCard(Card card){
+    public void selectCard(int id, string type){
         float defaultCameraSensivity = 300f;
         GameObject gameConfig = GameObject.Find("GameConfig");
         if (PlayerData.Instance.isPaused == true){
@@ -188,36 +209,58 @@ public class CardsSelector : MonoBehaviour
         Explosive_Grenade.gameObject.SetActive(false);
         Precision.gameObject.SetActive(false);
         Reload_Speed.gameObject.SetActive(false);
-        
+
 
         cardSelector.SetActive(false);
         isCardSelected = true;
-
-
-        if(card.type == "Bonus" && cardsDrawed == true){
-            cardsDrawed = false;
-            if(card.name == "More Time"){
-                PlayerData.Instance.timer += (int)card.modifier;
+        if(type.Equals("Bonus")){
+            if(id == 0){
+                PlayerData.Instance.timer += (int)card1Modifier;
             }
-            else if(card.name == "Score Multiplier"){
-                PlayerData.Instance.scoreMultiplier += card.modifier;
+            if(id == 1){
+                PlayerData.Instance.scoreMultiplier += card1Modifier;
             }
-        } else if(card.type == "PowerUp" && cardsDrawed == true){
-            cardsDrawed = false;
-            if(card.name == "Frozen Grenade"){
-                PlayerData.Instance.frozenGrenade = true;
-            }else if(card.name == "Explosive Grenade"){
-                PlayerData.Instance.explosiveGrenade = true;
+        } else if(type.Equals("Upgrade")){
+            if(id == 0){
+                PlayerData.Instance.precision += card3Modifier;
             }
-        } else if(card.type == "Upgrade" && cardsDrawed == true){
-            cardsDrawed = false;
-            if(card.name == "Precision"){
-                PlayerData.Instance.precision += card.modifier;
-            }else if(card.name == "Reload Speed"){
-                PlayerData.Instance.reloadSpd += card.modifier;
+            if(id == 1){
+                PlayerData.Instance.reloadSpd += card3Modifier;
             }
         }
+        if(type.Equals("PowerUp")){
+            if(id == 0){
+                Debug.Log("Frozen Grenade");
+                PlayerData.Instance.frozenGrenade = true;
+            }
+            if(id == 1){
+                PlayerData.Instance.explosiveGrenade = true;
+            }
+        }
+        cardsDrawed = false;
+        cleanButtons();
 
     }
 
+    private void cleanButtons()
+    {
+        card1Button.onClick.RemoveAllListeners();
+        card1Description.text = "";
+        card1Text.text = "";
+        card1Modifier = 0;
+        card1Id = 0;
+        card1Type = "";
+        card2Button.onClick.RemoveAllListeners();
+        card2Description.text = "";
+        card2Text.text = "";
+        card2Modifier = 0;
+        card2Id = 0;
+        card2Type = "";
+        card3Button.onClick.RemoveAllListeners();
+        card3Description.text = "";
+        card3Text.text = "";
+        card3Modifier = 0;
+        card3Id = 0;
+        card3Type = "";
+    }
 }
