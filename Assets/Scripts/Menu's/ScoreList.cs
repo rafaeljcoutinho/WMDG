@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 public class ScoreList : MonoBehaviour
 {
     public SaveMethod saveMethod;
-    public GameObject scoreEntryPrefab;
     public Transform contentTransform;
+    public ScoreController scoreController;
 
     [SerializeField] private Button backGameButton;
 
@@ -39,14 +39,10 @@ public class ScoreList : MonoBehaviour
         // Adiciona as entradas ordenadas à lista
         foreach (KeyValuePair<string, int> playerScoreData in playerScores)
         {
-            GameObject newEntry = Instantiate(scoreEntryPrefab, contentTransform);
-            newEntry.GetComponent<ScoreEntryController>().SetScore(playerScoreData.Key, playerScoreData.Value);
+            var row = Instantiate(scoreController, contentTransform).GetComponent<ScoreController>();
+            row.player.text = string.IsNullOrEmpty(playerScoreData.Key) ? "Unknown" : playerScoreData.Key;
+            row.score.text = playerScoreData.Value.ToString();
         }
-        ResetScrollPosition();
-    }
-    public void ResetScrollPosition()
-    {
-        GetComponent<ScrollRect>().verticalNormalizedPosition = 1f;
     }
 
     private void BackToMenu()

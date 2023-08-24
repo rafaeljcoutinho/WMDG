@@ -39,7 +39,8 @@ public class MainMenu : MonoBehaviour
 
     private void ViewScore()
     {
-        SceneManager.LoadScene("ScoreScene"); 
+        SceneManager.LoadScene("HighscoreScene"); 
+      //SceneManager.LoadScene("ScoreScene"); 
     }
 
     private void ConfigGame()
