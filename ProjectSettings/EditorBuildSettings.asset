@@ -21,12 +21,12 @@ EditorBuildSettings:
     path: Assets/Scenes/ModeSelector.unity
     guid: 6bdbf7101c5b173459cc2b728fe1eb67
   - enabled: 1
-    path: Assets/Scenes/ScoreScene.unity
-    guid: 7ae29d553e863bc428e517671fc92bab
-  - enabled: 1
     path: Assets/Scenes/WeaponSelector.unity
     guid: db9132f080bc0dc4080b85c26e12a8e4
   - enabled: 1
     path: Assets/Scenes/LuckyModeScene.unity
     guid: f55f0e1a00b10624999565b7132a0424
+  - enabled: 1
+    path: Assets/Scenes/HighscoreScene.unity
+    guid: 42a6b8ddea68a664d9390ea81dbff151
   m_configObjects: {}
