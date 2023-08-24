@@ -25,18 +25,22 @@ public class PauseMenuScript : MonoBehaviour
 
     public AudioMixer audioMixer;
 
-    private float lastTimeScale = 1;
+    public float lastTimeScale = 1;
     // Update is called once per frame
 
-    public void Update(){
+    public void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Time.timeScale == 0)
+            if (Time.timeScale == 0 && pauseMenu.activeSelf == true)
             {
                 ResumeGame();
             }
             else
             {
+                if (PlayerData.Instance != null){
+                PlayerData.Instance.isPaused = true;
+                }
                 Pause();
             }
         }
@@ -45,7 +49,6 @@ public class PauseMenuScript : MonoBehaviour
 
     void Pause()
     {
-        
         MenuButton.onClick.AddListener(MenuGame);
         ResumeButton.onClick.AddListener(ResumeGame);
         SettingsButton.onClick.AddListener(SettingsGame);
@@ -76,12 +79,17 @@ public class PauseMenuScript : MonoBehaviour
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        if (PlayerData.Instance != null){
+            PlayerData.Instance.ResetScore();
+        }
         UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 
     void ResumeGame()
     {
-        Time.timeScale = lastTimeScale;
+        PlayerData.Instance.isPaused = false;
+        Time.timeScale = lastTimeScale;     
+        pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         pauseMenu.SetActive(false);

@@ -23,7 +23,7 @@ public class ModeSelector : MonoBehaviour
 
     private void CardMode()
     {
-        
+        SceneManager.LoadScene("LuckyModeScene");
     }
 
     private void GoBack()

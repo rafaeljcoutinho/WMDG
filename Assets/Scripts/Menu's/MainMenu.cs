@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
         ConfigButton.onClick.AddListener(ConfigGame);
     }
 
+
     private void StartGame()
     {
         initialMenu.SetActive(false);
@@ -34,6 +35,7 @@ public class MainMenu : MonoBehaviour
     private void PlayGame()
     {
         PlayerData.Instance.SetPlayerName(playerNameInput.text);
+        PlayerData.Instance.tag = "PlayerData";
         SceneManager.LoadScene("WeaponSelector");
     }
 
@@ -55,6 +57,9 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             playerNameInput.gameObject.SetActive(false);

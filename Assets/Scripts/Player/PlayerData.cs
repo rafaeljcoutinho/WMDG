@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
@@ -19,6 +20,17 @@ public class PlayerData : MonoBehaviour
     public int shotsFired = 0;
     public float accuracy = 0;
 
+    public float timer;
+    public float scoreMultiplier = 1;
+
+    public bool automaticRifle = false;
+    public bool frozenGrenade = false;
+    public bool explosiveGrenade = false;
+
+    public float precision = 0;
+    public float fireRate = 0;
+    public float reloadSpd = 1;
+    internal bool isPaused = false;
 
     private void Awake()
     {
@@ -26,6 +38,15 @@ public class PlayerData : MonoBehaviour
         {
             Instance = this;
         }
+        this.gameObject.tag = "PlayerData";
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("PlayerData");
+
+        if (objs.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -47,6 +68,15 @@ public class PlayerData : MonoBehaviour
         allSpecialTargets = 0;
         shotsFired = 0;
         accuracy = 0;
+        timer = 60;
+        scoreMultiplier = 1;
+        automaticRifle = false;
+        frozenGrenade = false;
+        explosiveGrenade = false;
+        precision = 0;
+        fireRate = 0;
+        reloadSpd = 1;
+        isPaused = false;
     }
 
     public void Save()
