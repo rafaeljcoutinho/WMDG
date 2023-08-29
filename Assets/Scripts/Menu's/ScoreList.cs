@@ -37,11 +37,15 @@ public class ScoreList : MonoBehaviour
         playerScores = playerScores.OrderByDescending(x => x.Value).ToList();
 
         // Adiciona as entradas ordenadas à lista
-        foreach (KeyValuePair<string, int> playerScoreData in playerScores)
-        {
+        for (int index = 0;  index < playerScores.Count; index++) {
+            if (index > 14) // Limite de exibição para não estourar
+            {
+                break;
+            }
+
             var row = Instantiate(scoreController, contentTransform).GetComponent<ScoreController>();
-            row.player.text = string.IsNullOrEmpty(playerScoreData.Key) ? "Unknown" : playerScoreData.Key;
-            row.score.text = playerScoreData.Value.ToString();
+            row.player.text = string.IsNullOrEmpty(playerScores[index].Key) ? "Unknown" : playerScores[index].Key;
+            row.score.text = playerScores[index].Value.ToString();
         }
     }
 
